@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:inter_hospital_app/share/utils/logger.dart';
+import 'package:inter_hospital_app/share/navigation/push_screen_factory.dart';
+import 'package:inter_hospital_app/share/types/push_screen_type.dart';
+
 
 class AppBarHome extends StatelessWidget {
   @override
@@ -8,9 +10,16 @@ class AppBarHome extends StatelessWidget {
     return SafeArea(
         child: Row(
           children: [
-            CircleAvatar(
-              backgroundColor: Colors.grey,
-              radius: 24.sp,
+            InkWell(
+              onTap: () => {
+                PushScreenFactory()
+                    .create(PushScreenType.profile)
+                    .push(context)
+              },
+              child: CircleAvatar(
+                backgroundColor: Colors.grey,
+                radius: 24.sp,
+              ),
             ),
             Expanded(
                 child: Padding(
@@ -26,7 +35,9 @@ class AppBarHome extends StatelessWidget {
             ),
             IconButton(
                 onPressed: () => {
-                  AppLogger().info("Click Thông báo")
+                  PushScreenFactory()
+                      .create(PushScreenType.notification)
+                      .push(context)
                 },
                 icon: const Icon(
                   Icons.notifications,

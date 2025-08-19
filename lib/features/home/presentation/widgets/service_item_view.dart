@@ -20,7 +20,9 @@ class ServiceItemView extends StatelessWidget {
             color: Theme.of(context).primaryColor, // màu nền
             shape: const CircleBorder(),
             child: InkWell(
-              onTap: serviceItem.onTap,
+              onTap: () => {
+                serviceItem.onTap(context)
+              },
               splashColor: Theme.of(context).hoverColor.withOpacity(0.3),
               customBorder: const CircleBorder(),
               child: Padding(

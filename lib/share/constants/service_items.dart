@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:inter_hospital_app/share/utils/logger.dart';
+import 'package:inter_hospital_app/share/navigation/push_screen_factory.dart';
+import 'package:inter_hospital_app/share/types/push_screen_type.dart';
+
 
 class ServiceItem {
   final String label;
   final IconData iconData;
-  final VoidCallback onTap;
+  final Function(BuildContext context) onTap;
 
   ServiceItem({
     required this.label,
@@ -13,34 +15,41 @@ class ServiceItem {
   });
 }
 
-
 final List<ServiceItem> serviceItems = [
   ServiceItem(
     label: "Bảo hiểm y tế",
     iconData: Icons.health_and_safety_outlined,
-    onTap: () {
-      AppLogger().info("Click Bảo hiểm y tế");
+    onTap: (BuildContext context) {
+      PushScreenFactory()
+          .create(PushScreenType.viewHealthInsurance)
+          .push(context);
     },
   ),
   ServiceItem(
     label: "Hồ sơ sức khoẻ",
     iconData: Icons.folder_shared,
-    onTap: () {
-      AppLogger().info("Click Hồ sơ sức khoẻ");
+    onTap: (BuildContext context) {
+      PushScreenFactory()
+          .create(PushScreenType.viewMedicalRecord)
+          .push(context);
     },
   ),
   ServiceItem(
     label: "Đơn thuốc",
     iconData: Icons.medical_services,
-    onTap: () {
-      AppLogger().info("Click Xem đơn thuốc");
+    onTap: (BuildContext context) {
+      PushScreenFactory()
+          .create(PushScreenType.viewPrescription)
+          .push(context);
     },
   ),
   ServiceItem(
     label: "Giấy chuyển viện",
     iconData: Icons.article,
-    onTap: () {
-      AppLogger().info("Click Giấy chuyển viện");
+    onTap: (BuildContext context) {
+      PushScreenFactory()
+          .create(PushScreenType.viewTransferLetter)
+          .push(context);
     },
   ),
 ];

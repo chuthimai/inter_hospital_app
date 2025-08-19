@@ -3,6 +3,8 @@ import 'package:inter_hospital_app/features/home/presentation/widgets/head_home.
 import 'package:inter_hospital_app/features/home/presentation/widgets/services.dart';
 
 class Home extends StatelessWidget {
+  const Home({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(

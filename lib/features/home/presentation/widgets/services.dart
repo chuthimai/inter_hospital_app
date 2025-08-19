@@ -4,6 +4,8 @@ import 'package:inter_hospital_app/features/home/presentation/widgets/service_it
 import 'package:inter_hospital_app/share/constants/service_items.dart';
 
 class Services extends StatelessWidget {
+  const Services({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
