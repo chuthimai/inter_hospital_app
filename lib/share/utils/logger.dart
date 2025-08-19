@@ -6,12 +6,14 @@ import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
 
 class AppLogger {
-  static final AppLogger _instance = AppLogger._internal();
+  static final AppLogger _instance = AppLogger();
   late final Logger _logger;
   late final RollingFileWriter _writingFiles;
 
-  AppLogger._internal() {
-    _logger = Logger();
+  AppLogger() {
+    _logger = Logger(
+      printer: SimplePrinter()
+    );
     createWritingFiles();
   }
 

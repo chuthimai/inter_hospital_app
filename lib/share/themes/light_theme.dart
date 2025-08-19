@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'color_schemes.dart';
 import 'text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final ThemeData lightTheme = ThemeData(
   primaryColor: AppColors.primaryLight,
@@ -97,5 +98,29 @@ final ThemeData lightTheme = ThemeData(
     onSurface: AppColors.textLight,
     error: AppColors.errorLight,
     onError: Colors.white,
+  ),
+
+  navigationBarTheme: NavigationBarThemeData(
+    backgroundColor: AppColors.cardLight,
+    indicatorColor: AppColors.primaryLight,
+    labelTextStyle: MaterialStateProperty.all(
+      TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textLight
+      ),
+    ),
+    iconTheme: MaterialStateProperty.all(
+      IconThemeData(
+          size: 24.r,
+          color: AppColors.iconLight
+      ),
+    ),
+  ),
+
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: AppColors.cardLight,
+    selectedItemColor: AppColors.subtextLight,
+    unselectedItemColor: AppColors.borderLight,
   ),
 );

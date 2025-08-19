@@ -18,7 +18,7 @@ class AppColors {
   static const Color subtextDark = Color(0xFFCCCCCC);
 
   // ===== CARD / SURFACE COLORS =====
-  static const Color cardLight = Color(0xFFFFFFFF);
+  static const Color cardLight = Color(0xE8FFFFFF);
   static const Color cardDark = Color(0xFF2C2F38);
 
   // ===== BORDER COLORS =====

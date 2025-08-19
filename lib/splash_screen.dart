@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:inter_hospital_app/features/home/presentation/view/home_screen.dart';
 
-import 'main_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 2));
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => MainPage()),
+      MaterialPageRoute(builder: (context) => HomeScreen()),
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'color_schemes.dart';
 import 'text_styles.dart';
 
@@ -97,5 +98,40 @@ final ThemeData darkTheme = ThemeData(
     onSurface: AppColors.textDark,
     error: AppColors.errorDark,
     onError: Colors.white,
+  ),
+
+  navigationBarTheme: NavigationBarThemeData(
+    backgroundColor: AppColors.cardDark,
+    indicatorColor: AppColors.primaryDark,
+    labelTextStyle: MaterialStateProperty.all(
+      TextStyle(
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w500,
+          color: AppColors.textDark
+      ),
+    ),
+    iconTheme: MaterialStateProperty.all(
+      IconThemeData(
+          size: 24.r,
+          color: AppColors.iconDark
+      ),
+    ),
+  ),
+
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: AppColors.cardDark,
+    selectedItemColor: AppColors.subtextDark,
+    unselectedItemColor: AppColors.borderDark,
+    selectedLabelStyle: TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textDark
+    ),
+    unselectedLabelStyle: TextStyle(
+        fontSize: 14.sp,
+          fontWeight: FontWeight.w500,
+          color: AppColors.textDark
+    ),
+
   ),
 );
