@@ -11,6 +11,16 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit(this.repo, this.userSession) : super(AuthInitial());
 
+  Future<void> getCurrentUser() async {
+    emit(AuthLoading());
+    final user = await repo.getCurrentUser();
+    if (user != null) {
+      emit(AuthSuccess(user));
+      return;
+    }
+    emit(AuthInitial());
+  }
+
   Future<void> login(LoginParams loginParams) async {
     emit(AuthLoading());
 

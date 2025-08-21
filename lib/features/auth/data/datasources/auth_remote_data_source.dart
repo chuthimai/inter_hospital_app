@@ -9,8 +9,6 @@ import '../models/user_model.dart';
 abstract class AuthRemoteDataSource {
   Future<UserModel> login(LoginRequest loginRequest);
 
-  Future<void> logout();
-
   Future<void> resetPassword(ResetPasswordRequest resetPasswordRequest);
 
   Future<void> forgotPassword(ForgotPasswordRequest forgotPasswordRequest);
@@ -35,11 +33,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     } catch (e) {
       rethrow; // ném lỗi cho tầng trên xử lý
     }
-  }
-
-  @override
-  Future<void> logout() async {
-    //TODO: Xoá jwt
   }
 
   @override

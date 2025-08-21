@@ -1,3 +1,4 @@
+import 'package:inter_hospital_app/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:inter_hospital_app/features/auth/data/models/forgot_password_request.dart';
 import 'package:inter_hospital_app/features/auth/data/models/login_request.dart';
 import 'package:inter_hospital_app/features/auth/data/models/reset_password_request.dart';
@@ -10,37 +11,42 @@ import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_data_source.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDataSource remoteDatasource;
+  final AuthRemoteDataSource remoteDataSource;
+  final AuthLocalDataSource localDataSource;
 
-  AuthRepositoryImpl(this.remoteDatasource);
+  AuthRepositoryImpl({
+    required this.remoteDataSource,
+    required this.localDataSource,
+  });
 
   @override
   Future<User> login(LoginParams loginParams) async {
     final userModel =
-        await remoteDatasource.login(LoginRequest.fromParams(loginParams));
+        await remoteDataSource.login(LoginRequest.fromParams(loginParams));
+    await localDataSource.saveUser(userModel);
     return userModel.toEntity();
   }
 
   @override
   Future<void> logout() async {
-    await remoteDatasource.logout();
+    await localDataSource.deleteUser();
   }
 
   @override
   Future<void> resetPassword(ResetPasswordParams resetPasswordParams) async {
-    await remoteDatasource
+    await remoteDataSource
         .resetPassword(ResetPasswordRequest.fromParams(resetPasswordParams));
   }
 
   @override
   Future<void> forgotPassword(ForgotPasswordParams forgotPasswordParams) async {
-    await remoteDatasource
+    await remoteDataSource
         .forgotPassword(ForgotPasswordRequest.fromParams(forgotPasswordParams));
   }
 
   @override
-  Future<User?> getCurrentUser() {
-    // TODO: implement getCurrentUser
-    throw UnimplementedError();
+  Future<User?> getCurrentUser() async {
+    final userModel = await localDataSource.getUser();
+    return userModel?.toEntity();
   }
 }
