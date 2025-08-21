@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:inter_hospital_app/features/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:inter_hospital_app/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:inter_hospital_app/features/auth/presentation/cubit/user_session_cubit.dart';
 import 'package:inter_hospital_app/splash_screen.dart';
 import 'share/themes/app_theme.dart';
 
@@ -10,13 +15,23 @@ void main() async {
     DeviceOrientation.portraitUp,
   ]);
 
+  final remoteDatasource = AuthRemoteDataSourceImpl();
+  final repo = AuthRepositoryImpl(remoteDatasource);
+  final userSession = UserSessionCubit();
+
   runApp(
-    ScreenUtilInit(
-      designSize: const Size(430, 932), // iphone 14 pro screen
-      minTextAdapt: true,
-      builder: (context, child) {
-        return MyApp();
-      },
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => userSession),
+          BlocProvider(create: (context) => AuthCubit(repo, userSession))
+        ],
+      child: ScreenUtilInit(
+        designSize: const Size(430, 932), // iphone 14 pro screen
+        minTextAdapt: true,
+        builder: (context, child) {
+          return const MyApp();
+        },
+      ),
     )
   );
 }
@@ -41,8 +56,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SplashScreen()
-    );
+    return const SplashScreen();
   }
 }

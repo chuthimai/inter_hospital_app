@@ -12,7 +12,7 @@ class SettingScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('SettingScreen'),
         ),
-        body: Settings(),
+        body: const Settings(),
       ),
     );
   }

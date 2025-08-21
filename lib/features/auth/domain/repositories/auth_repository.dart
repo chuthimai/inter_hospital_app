@@ -1,9 +1,13 @@
+import 'package:inter_hospital_app/features/auth/domain/entities/forgot_password_params.dart';
+import 'package:inter_hospital_app/features/auth/domain/entities/login_params.dart';
+import 'package:inter_hospital_app/features/auth/domain/entities/reset_password_params.dart';
+
 import '../entities/user.dart';
 
 abstract class AuthRepository {
-  Future<User> login(String id, String password);
-  Future<User> register(String id);
+  Future<User> login(LoginParams loginParams);
+  Future<User?> getCurrentUser();
   Future<void> logout();
-  Future<void> resetPassword(String id);
-  Future<void> forgotPassword(String id);
+  Future<void> resetPassword(ResetPasswordParams resetPasswordParams);
+  Future<void> forgotPassword(ForgotPasswordParams forgotPasswordParams);
 }

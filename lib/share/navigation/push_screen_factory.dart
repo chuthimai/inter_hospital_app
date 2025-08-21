@@ -1,7 +1,10 @@
-import 'package:inter_hospital_app/share/navigation/implementations/auth_push_screen.dart';
+import 'package:inter_hospital_app/share/navigation/implementations/change_password_push_screen.dart';
+import 'package:inter_hospital_app/share/navigation/implementations/forgot_password_push_screen.dart';
+import 'package:inter_hospital_app/share/navigation/implementations/login_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/create_code_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/home_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/notification_push_screen.dart';
+import 'package:inter_hospital_app/share/navigation/implementations/otp_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/profile_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/setting_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/view_code_push_screen.dart';
@@ -17,8 +20,14 @@ import 'interfaces/push_screen.dart';
 class PushScreenFactory {
   PushScreen create(PushScreenType type) {
     switch (type) {
-      case PushScreenType.auth:
-        return AuthPushScreen();
+      case PushScreenType.login:
+        return LoginPushScreen();
+      case PushScreenType.forgotPassword:
+        return ForgotPasswordPushScreen();
+      case PushScreenType.otp:
+        return OtpPushScreen();
+      case PushScreenType.changePassword:
+        return ChangePasswordPushScreen();
       case PushScreenType.createCode:
         return CreateCodePushScreen();
       case PushScreenType.home:

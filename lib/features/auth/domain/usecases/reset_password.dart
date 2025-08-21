@@ -1,3 +1,5 @@
+import 'package:inter_hospital_app/features/auth/domain/entities/reset_password_params.dart';
+
 import '../repositories/auth_repository.dart';
 
 class ResetPassword {
@@ -5,5 +7,5 @@ class ResetPassword {
 
   ResetPassword(this.repository);
 
-  Future<void> call(String id) => repository.resetPassword(id);
+  Future<void> call(ResetPasswordParams resetPasswordParams) => repository.resetPassword(resetPasswordParams);
 }

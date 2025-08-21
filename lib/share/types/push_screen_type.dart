@@ -1,5 +1,8 @@
 enum PushScreenType {
-  auth,
+  login,
+  forgotPassword,
+  otp,
+  changePassword,
   createCode,
   home,
   notification,

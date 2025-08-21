@@ -1,16 +1,24 @@
+import 'package:inter_hospital_app/features/auth/data/models/forgot_password_request.dart';
+import 'package:inter_hospital_app/features/auth/data/models/login_request.dart';
+import 'package:inter_hospital_app/features/auth/data/models/reset_password_request.dart';
+import 'package:inter_hospital_app/features/auth/domain/entities/forgot_password_params.dart';
+import 'package:inter_hospital_app/features/auth/domain/entities/login_params.dart';
+import 'package:inter_hospital_app/features/auth/domain/entities/reset_password_params.dart';
+
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
-import '../datasources/auth_remote_datasource.dart';
+import '../datasources/auth_remote_data_source.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDatasource remoteDatasource;
+  final AuthRemoteDataSource remoteDatasource;
 
   AuthRepositoryImpl(this.remoteDatasource);
 
   @override
-  Future<User> login(String id, String password) async {
-    final userModel = await remoteDatasource.login(id, password);
-    return userModel;
+  Future<User> login(LoginParams loginParams) async {
+    final userModel =
+        await remoteDatasource.login(LoginRequest.fromParams(loginParams));
+    return userModel.toEntity();
   }
 
   @override
@@ -19,19 +27,20 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<User> register(String id) async {
-    final userModel = await remoteDatasource.register(id);
-    return userModel;
+  Future<void> resetPassword(ResetPasswordParams resetPasswordParams) async {
+    await remoteDatasource
+        .resetPassword(ResetPasswordRequest.fromParams(resetPasswordParams));
   }
 
   @override
-  Future<void> resetPassword(String id) async {
-    await remoteDatasource.resetPassword(id);
+  Future<void> forgotPassword(ForgotPasswordParams forgotPasswordParams) async {
+    await remoteDatasource
+        .forgotPassword(ForgotPasswordRequest.fromParams(forgotPasswordParams));
   }
 
   @override
-  Future<void> forgotPassword(String id) async {
-    await remoteDatasource.forgotPassword(id);
+  Future<User?> getCurrentUser() {
+    // TODO: implement getCurrentUser
+    throw UnimplementedError();
   }
-  
 }
