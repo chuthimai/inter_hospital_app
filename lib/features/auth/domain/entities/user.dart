@@ -1,8 +1,5 @@
-import 'dart:ffi';
-
 class User {
   final int id;
-  final String jwt;
   final String name;
   final String email;
   final String role;
@@ -13,7 +10,6 @@ class User {
 
   const User({
     required this.id,
-    required this.jwt,
     required this.name,
     required this.email,
     required this.role,

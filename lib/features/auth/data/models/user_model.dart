@@ -6,7 +6,6 @@ part 'user_model.g.dart';
 @JsonSerializable()
 class UserModel {
   final int id;
-  final String jwt;
   final String name;
   final String email;
   final String role;
@@ -15,16 +14,16 @@ class UserModel {
   final bool gender;
   final DateTime birthDate;
 
-  const UserModel(
-      {required this.id,
-      required this.jwt,
-      required this.name,
-      required this.email,
-      required this.role,
-      required this.photo,
-      required this.telecom,
-      required this.gender,
-      required this.birthDate});
+  const UserModel({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.role,
+    required this.photo,
+    required this.telecom,
+    required this.gender,
+    required this.birthDate,
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
@@ -33,7 +32,6 @@ class UserModel {
 
   User toEntity() => User(
         id: id,
-        jwt: jwt,
         name: name,
         email: email,
         role: role,
