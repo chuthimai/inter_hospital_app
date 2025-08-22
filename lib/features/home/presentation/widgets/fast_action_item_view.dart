@@ -31,7 +31,7 @@ class FastActionItemView extends StatelessWidget {
                   Expanded(
                     child: Text(
                       label,
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
                 ],

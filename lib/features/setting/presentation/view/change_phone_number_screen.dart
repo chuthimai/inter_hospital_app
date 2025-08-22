@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:inter_hospital_app/share/navigation/push_screen_factory.dart';
+import 'package:inter_hospital_app/share/types/push_screen_type.dart';
 import 'package:inter_hospital_app/share/widgets/custom_button.dart';
 import 'package:inter_hospital_app/share/widgets/custom_text_field.dart';
 
-class ChangePasswordScreen extends StatelessWidget {
-  const ChangePasswordScreen({super.key});
+class ChangePhoneNumberScreen extends StatelessWidget {
+  const ChangePhoneNumberScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +34,11 @@ class ChangePasswordScreen extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Hero(
-                                  tag: "change_password",
+                                  tag: "change_phone_number",
                                   child: Material(
                                     color: Colors.transparent,
                                     child: Text(
-                                      "Đổi mật khẩu",
+                                      "Đổi số điện thoại",
                                       style: Theme.of(context).textTheme.displayLarge,
                                       textAlign: TextAlign.center,
                                     ),
@@ -47,27 +49,16 @@ class ChangePasswordScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 16.sp),
                           const CustomTextFormField(
-                            hintText: "Mật khẩu cũ",
-                            prefixIcon: Icon(Icons.password),
-                            isPassword: true,
-                          ),
-                          SizedBox(height: 16.h),
-                          const CustomTextFormField(
-                            hintText: "Mật khẩu mới",
-                            prefixIcon: Icon(Icons.vpn_key),
-                            isPassword: true,
-                          ),
-                          SizedBox(height: 16.h),
-                          const CustomTextFormField(
-                            hintText: "Nhập lại mật khẩu mới",
-                            prefixIcon: Icon(Icons.vpn_key_outlined),
-                            isPassword: true,
+                            hintText: "Số điện thoại mới",
+                            prefixIcon: Icon(Icons.phone_android),
                           ),
                           SizedBox(height: 16.h),
 
                           CustomButton(
                             text: "Lưu thay đổi",
-                            onPressed: () {},
+                            onPressed: () => PushScreenFactory()
+                                .create(PushScreenType.otpAuthPhone)
+                                .push(context),
                           ),
                         ],
                       ),
@@ -81,4 +72,5 @@ class ChangePasswordScreen extends StatelessWidget {
       ),
     );
   }
+
 }

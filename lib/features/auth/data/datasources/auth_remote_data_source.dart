@@ -29,7 +29,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return UserModel.fromJson(userDataFake);
       }
 
-      throw Exception("Sai tài khoản hoặc mật khẩu");
+      throw Exception("Sai số CCCD hoặc mật khẩu");
     } catch (e) {
       rethrow; // ném lỗi cho tầng trên xử lý
     }

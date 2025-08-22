@@ -25,7 +25,7 @@ class Services extends StatelessWidget {
               padding: EdgeInsets.all(8.sp),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
-                childAspectRatio: 2/3,
+                childAspectRatio: 2/4,
                 crossAxisSpacing: 4.sp,
                 mainAxisSpacing: 4.sp,
               ),

@@ -4,6 +4,7 @@ import 'text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final ThemeData lightTheme = ThemeData(
+  brightness: Brightness.light,
   primaryColor: AppColors.primaryLight,
   scaffoldBackgroundColor: AppColors.backgroundLight,
 
@@ -80,8 +81,8 @@ final ThemeData lightTheme = ThemeData(
   ),
 
   snackBarTheme: SnackBarThemeData(
-    backgroundColor: AppColors.primaryLight,
-    contentTextStyle: AppTextStyles.body.copyWith(color: Colors.white),
+    backgroundColor: AppColors.cardLight,
+    contentTextStyle: AppTextStyles.body.copyWith(color: Colors.blueGrey),
     behavior: SnackBarBehavior.floating,
   ),
 

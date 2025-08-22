@@ -6,6 +6,7 @@ import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_cubit.d
 import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_state.dart';
 import 'package:inter_hospital_app/share/navigation/push_screen_factory.dart';
 import 'package:inter_hospital_app/share/types/push_screen_type.dart';
+import 'package:inter_hospital_app/share/widgets/app_snack_bar.dart';
 import 'package:inter_hospital_app/share/widgets/custom_button.dart';
 import 'package:inter_hospital_app/share/widgets/custom_text_button.dart';
 import 'package:inter_hospital_app/share/widgets/custom_text_field.dart';
@@ -33,8 +34,9 @@ class _LoginScreenState extends State<LoginScreen> {
         listener: (context, state) {
           if (state is AuthSuccess) {
             PushScreenFactory().create(PushScreenType.home).push(context);
+            AppSnackBar.success(context, "Đăng nhập thành công");
           } else if (state is AuthFailure) {
-            PushScreenFactory().create(PushScreenType.login).push(context);
+            AppSnackBar.error(context, state.message);
           }
         },
         child: SafeArea(
@@ -117,6 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _onClickLogin(BuildContext context) {
     if (_formKey.currentState!.validate()) {
+      FocusScope.of(context).unfocus();
       _formKey.currentState!.save();
       final request = LoginParams(
         id: int.parse(_id),

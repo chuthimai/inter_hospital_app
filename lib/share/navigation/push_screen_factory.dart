@@ -1,9 +1,11 @@
 import 'package:inter_hospital_app/share/navigation/implementations/change_password_push_screen.dart';
+import 'package:inter_hospital_app/share/navigation/implementations/change_phone_number_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/forgot_password_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/login_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/create_code_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/home_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/notification_push_screen.dart';
+import 'package:inter_hospital_app/share/navigation/implementations/otp_auth_phone_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/otp_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/profile_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/setting_push_screen.dart';
@@ -50,6 +52,10 @@ class PushScreenFactory {
         return ViewPrescriptionPushScreen();
       case PushScreenType.viewTransferLetter:
         return ViewTransferLetterPushScreen();
+      case PushScreenType.changePhoneNumber:
+        return ChangePhoneNumberPushScreen();
+      case PushScreenType.otpAuthPhone:
+        return OtpAuthPhonePushScreen();
     }
   }
 }

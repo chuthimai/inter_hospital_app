@@ -4,6 +4,7 @@ import 'color_schemes.dart';
 import 'text_styles.dart';
 
 final ThemeData darkTheme = ThemeData(
+  brightness: Brightness.dark,
   primaryColor: AppColors.primaryDark,
   scaffoldBackgroundColor: AppColors.backgroundDark,
 
@@ -80,7 +81,7 @@ final ThemeData darkTheme = ThemeData(
   ),
 
   snackBarTheme: SnackBarThemeData(
-    backgroundColor: AppColors.primaryDark,
+    backgroundColor: AppColors.cardDark,
     contentTextStyle: AppTextStyles.body.copyWith(color: Colors.white),
     behavior: SnackBarBehavior.floating,
   ),
@@ -89,7 +90,7 @@ final ThemeData darkTheme = ThemeData(
     color: AppColors.primaryDark,
   ),
 
-  colorScheme: const ColorScheme.light(
+  colorScheme: const ColorScheme.dark(
     primary: AppColors.primaryDark,
     onPrimary: Colors.white,
     background: AppColors.backgroundDark,

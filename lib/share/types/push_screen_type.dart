@@ -13,5 +13,7 @@ enum PushScreenType {
   viewHealthInsurance,
   viewMedicalRecord,
   viewPrescription,
-  viewTransferLetter
+  viewTransferLetter,
+  changePhoneNumber,
+  otpAuthPhone
 }

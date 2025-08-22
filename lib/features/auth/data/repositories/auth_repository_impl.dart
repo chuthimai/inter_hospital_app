@@ -11,42 +11,42 @@ import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_data_source.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDataSource remoteDataSource;
-  final AuthLocalDataSource localDataSource;
+  final AuthRemoteDataSource _remoteDataSource;
+  final AuthLocalDataSource _localDataSource;
 
   AuthRepositoryImpl({
-    required this.remoteDataSource,
-    required this.localDataSource,
-  });
+    required AuthRemoteDataSource remoteDataSource,
+    required AuthLocalDataSource localDataSource,
+  }) : _localDataSource = localDataSource, _remoteDataSource = remoteDataSource;
 
   @override
   Future<User> login(LoginParams loginParams) async {
     final userModel =
-        await remoteDataSource.login(LoginRequest.fromParams(loginParams));
-    await localDataSource.saveUser(userModel);
+        await _remoteDataSource.login(LoginRequest.fromParams(loginParams));
+    await _localDataSource.saveUser(userModel);
     return userModel.toEntity();
   }
 
   @override
   Future<void> logout() async {
-    await localDataSource.deleteUser();
+    await _localDataSource.deleteUser();
   }
 
   @override
   Future<void> resetPassword(ResetPasswordParams resetPasswordParams) async {
-    await remoteDataSource
+    await _remoteDataSource
         .resetPassword(ResetPasswordRequest.fromParams(resetPasswordParams));
   }
 
   @override
   Future<void> forgotPassword(ForgotPasswordParams forgotPasswordParams) async {
-    await remoteDataSource
+    await _remoteDataSource
         .forgotPassword(ForgotPasswordRequest.fromParams(forgotPasswordParams));
   }
 
   @override
   Future<User?> getCurrentUser() async {
-    final userModel = await localDataSource.getUser();
+    final userModel = await _localDataSource.getUser();
     return userModel?.toEntity();
   }
 }
