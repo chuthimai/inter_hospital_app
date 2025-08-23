@@ -1,10 +1,6 @@
 import 'package:inter_hospital_app/features/auth/data/datasources/auth_local_data_source.dart';
-import 'package:inter_hospital_app/features/auth/data/models/forgot_password_request.dart';
 import 'package:inter_hospital_app/features/auth/data/models/login_request.dart';
-import 'package:inter_hospital_app/features/auth/data/models/reset_password_request.dart';
-import 'package:inter_hospital_app/features/auth/domain/entities/forgot_password_params.dart';
 import 'package:inter_hospital_app/features/auth/domain/entities/login_params.dart';
-import 'package:inter_hospital_app/features/auth/domain/entities/reset_password_params.dart';
 
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -30,18 +26,6 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<void> logout() async {
     await _localDataSource.deleteUser();
-  }
-
-  @override
-  Future<void> resetPassword(ResetPasswordParams resetPasswordParams) async {
-    await _remoteDataSource
-        .resetPassword(ResetPasswordRequest.fromParams(resetPasswordParams));
-  }
-
-  @override
-  Future<void> forgotPassword(ForgotPasswordParams forgotPasswordParams) async {
-    await _remoteDataSource
-        .forgotPassword(ForgotPasswordRequest.fromParams(forgotPasswordParams));
   }
 
   @override
