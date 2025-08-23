@@ -7,7 +7,7 @@ class ViewHealthInsurancePushScreen implements PushScreen {
   @override
   void push(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (ctx) => const ViewHealthInsuranceScreen()
+        builder: (ctx) => ViewHealthInsuranceScreen()
     ));
   }
 }

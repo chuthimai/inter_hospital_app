@@ -7,7 +7,6 @@ import 'package:inter_hospital_app/features/auth/data/datasources/auth_remote_da
 import 'package:inter_hospital_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:inter_hospital_app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:inter_hospital_app/features/auth/presentation/cubit/user_session_cubit.dart';
 import 'package:inter_hospital_app/features/setting/data/datasources/theme_local_data_source.dart';
 import 'package:inter_hospital_app/features/setting/data/repositories/theme_repository_impl.dart';
 import 'package:inter_hospital_app/features/setting/domain/repositories/theme_repository.dart';
