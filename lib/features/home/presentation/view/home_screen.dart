@@ -17,10 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    Home(),
-    HealthInsurance(),
-    MedicalRecords(),
-    Settings()
+    const Home(),
+    const HealthInsurance(),
+    const MedicalRecords(),
+    const Settings()
   ];
 
   @override

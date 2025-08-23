@@ -8,7 +8,7 @@ import 'package:inter_hospital_app/share/constants/api.dart';
 import '../models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<UserModel?> login(LoginRequest loginRequest);
+  Future<UserModel> login(LoginRequest loginRequest);
 
   Future<void> resetPassword(ResetPasswordRequest resetPasswordRequest);
 
@@ -17,7 +17,7 @@ abstract class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
-  Future<UserModel?> login(LoginRequest loginRequest) async {
+  Future<UserModel> login(LoginRequest loginRequest) async {
     await Future.delayed(const Duration(seconds: 2));
 
     if (loginRequest.id == 1 && loginRequest.password == "12345678") {
@@ -26,6 +26,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       await tokenStorage.writeRefreshToken(userWithTokenDataFake["refreshToken"]);
       return UserModel.fromJson(userWithTokenDataFake['user']);
     }
+    throw Exception("Sai số CCCD hoặc mật khẩu");
   }
 
   @override

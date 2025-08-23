@@ -29,8 +29,6 @@ void main() async {
     localDataSource: localDataSource,
   );
 
-  final userSession = UserSessionCubit();
-
   // Theme
   final ThemeLocalDataSource themeLocalDataSource = ThemeLocalDataSourceImpl();
   final ThemeRepository themeRepository = ThemeRepositoryImpl(
@@ -40,10 +38,9 @@ void main() async {
   // Bọc State toàn app
   runApp(MultiBlocProvider(
     providers: [
-      BlocProvider(create: (context) => userSession),
       BlocProvider(
         create: (context) =>
-            AuthCubit(authRepository, userSession)..getCurrentUser(),
+            AuthCubit(authRepository)..getCurrentUser(),
       ),
       BlocProvider(
         create: (context) => ThemeCubit(themeRepository)..getCurrentTheme(),

@@ -3,13 +3,11 @@ import 'package:inter_hospital_app/features/auth/domain/entities/login_params.da
 import 'package:inter_hospital_app/features/auth/domain/repositories/auth_repository.dart';
 
 import 'auth_state.dart';
-import 'user_session_cubit.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository repo;
-  final UserSessionCubit userSession;
 
-  AuthCubit(this.repo, this.userSession) : super(AuthInitial());
+  AuthCubit(this.repo) : super(AuthInitial());
 
   Future<void> getCurrentUser() async {
     emit(AuthLoading());
@@ -26,7 +24,6 @@ class AuthCubit extends Cubit<AuthState> {
 
     try {
       final user = await repo.login(loginParams);
-      userSession.saveUser(user);
       emit(AuthSuccess(user));
     } catch (e) {
       emit(AuthFailure(e.toString()));
@@ -35,7 +32,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   void logout() {
     repo.logout();
-    userSession.clearUser();
     emit(AuthInitial());
   }
 }
