@@ -11,9 +11,7 @@ import 'package:inter_hospital_app/share/widgets/custom_button.dart';
 import 'package:inter_hospital_app/share/widgets/custom_text_button.dart';
 import 'package:inter_hospital_app/share/widgets/custom_text_field.dart';
 
-
 class LoginScreen extends StatefulWidget {
-
   const LoginScreen({super.key});
 
   @override
@@ -30,16 +28,22 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: BlocListener<AuthCubit, AuthState>(
-        listener: (context, state) {
-          if (state is AuthSuccess) {
-            PushScreenFactory().create(PushScreenType.home).push(context);
-            AppSnackBar.success(context, "Đăng nhập thành công");
-          } else if (state is AuthFailure) {
-            AppSnackBar.error(context, state.message);
-          }
-        },
-        child: SafeArea(
+      body: BlocConsumer<AuthCubit, AuthState>(listener: (context, state) {
+        if (state is AuthSuccess) {
+          PushScreenFactory().create(PushScreenType.home).push(context);
+          AppSnackBar.success(context, "Đăng nhập thành công");
+        } else if (state is AuthFailure) {
+          AppSnackBar.error(context, state.message);
+        }
+      }, builder: (context, state) {
+        if (state is AuthLoading) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          );
+        }
+        return SafeArea(
           child: Center(
             child: SingleChildScrollView(
               child: Container(
@@ -60,7 +64,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               Expanded(
                                 child: Text(
                                   "Đăng nhập",
-                                  style: Theme.of(context).textTheme.displayLarge,
+                                  style:
+                                      Theme.of(context).textTheme.displayLarge,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -74,7 +79,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             validator: (value) {
                               if (value == null || value.isEmpty)
                                 return "Vui lòng nhập số CCCD";
-                              if (value.length != 12) return "CCCD phải có 12 số";
+                              if (value.length != 12)
+                                return "CCCD phải có 12 số";
                               return null;
                             },
                             onSaved: (value) => _id = value!,
@@ -112,8 +118,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 
