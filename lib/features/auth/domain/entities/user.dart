@@ -7,6 +7,7 @@ class User {
   final String telecom;
   final bool gender;
   final DateTime birthDate;
+  final String address;
 
   const User({
     required this.id,
@@ -16,6 +17,7 @@ class User {
     required this.photo,
     required this.telecom,
     required this.gender,
-    required this.birthDate
+    required this.birthDate,
+    required this.address,
   });
 }

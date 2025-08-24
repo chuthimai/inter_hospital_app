@@ -15,6 +15,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       telecom: json['telecom'] as String,
       gender: json['gender'] as bool,
       birthDate: DateTime.parse(json['birthDate'] as String),
+      address: json['address'] as String,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -26,4 +27,5 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'telecom': instance.telecom,
       'gender': instance.gender,
       'birthDate': instance.birthDate.toIso8601String(),
+      'address': instance.address,
     };

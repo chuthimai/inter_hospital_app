@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inter_hospital_app/features/profile/presentation/widget/profile_qr_code.dart';
 import 'package:inter_hospital_app/features/view_health_insurance/data/datasources/health_insurance_local_data_source.dart';
 import 'package:inter_hospital_app/features/view_health_insurance/data/datasources/health_insurance_remote_data_source.dart';
 import 'package:inter_hospital_app/features/view_health_insurance/data/repositories/health_insurance_repository_impl.dart';
@@ -43,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
         create: (context) => HealthInsuranceCubit(_repo),
         child: const HealthInsuranceView(),
       ),
+      const ProfileQrCode(),
       const MedicalRecords(),
       const Settings()
     ];

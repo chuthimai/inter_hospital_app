@@ -29,6 +29,12 @@ class NavigationBarHome extends StatelessWidget {
         ),
 
         BottomNavigationBarItem(
+            icon: Icon(Icons.qr_code_2_outlined),
+            label: "QR code",
+            tooltip: 'QR code'
+        ),
+
+        BottomNavigationBarItem(
             icon: Icon(Icons.folder_shared),
             label: "Hồ sơ sức khoẻ",
             tooltip: 'Hồ sơ sức khoẻ'

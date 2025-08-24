@@ -13,6 +13,7 @@ class UserModel {
   final String telecom;
   final bool gender;
   final DateTime birthDate;
+  final String address;
 
   const UserModel({
     required this.id,
@@ -23,6 +24,7 @@ class UserModel {
     required this.telecom,
     required this.gender,
     required this.birthDate,
+    required this.address,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -39,5 +41,6 @@ class UserModel {
         telecom: telecom,
         gender: gender,
         birthDate: birthDate,
+        address: address,
       );
 }

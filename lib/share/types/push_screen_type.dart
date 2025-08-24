@@ -15,5 +15,6 @@ enum PushScreenType {
   viewPrescription,
   viewTransferLetter,
   changePhoneNumber,
-  otpAuthPhone
+  otpAuthPhone,
+  profileQrCode,
 }

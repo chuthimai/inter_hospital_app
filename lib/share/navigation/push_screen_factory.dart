@@ -8,6 +8,7 @@ import 'package:inter_hospital_app/share/navigation/implementations/notification
 import 'package:inter_hospital_app/share/navigation/implementations/otp_auth_phone_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/otp_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/profile_push_screen.dart';
+import 'package:inter_hospital_app/share/navigation/implementations/profile_qr_code_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/setting_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/view_code_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/view_followup_appointment_push_screen.dart';
@@ -56,6 +57,8 @@ class PushScreenFactory {
         return ChangePhoneNumberPushScreen();
       case PushScreenType.otpAuthPhone:
         return OtpAuthPhonePushScreen();
+      case PushScreenType.profileQrCode:
+        return ProfileQrCodePushScreen();
     }
   }
 }

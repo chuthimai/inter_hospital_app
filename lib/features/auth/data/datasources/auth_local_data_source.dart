@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:inter_hospital_app/share/db/secure_token_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/user_model.dart';
 
@@ -32,5 +33,6 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   Future<void> deleteUser() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_userKey);
+    SecureTokenStorage().deleteTokens();
   }
 }

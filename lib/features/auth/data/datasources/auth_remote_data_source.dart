@@ -1,5 +1,5 @@
 import 'package:inter_hospital_app/fakedata/user.dart';
-import 'package:inter_hospital_app/share/data/secure_token_storage.dart';
+import 'package:inter_hospital_app/share/db/secure_token_storage.dart';
 import 'package:inter_hospital_app/features/auth/data/models/login_request.dart';
 
 import '../models/user_model.dart';

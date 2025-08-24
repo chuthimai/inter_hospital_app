@@ -10,7 +10,7 @@ class Home extends StatelessWidget {
     return Column(
       children: [
         HeadHome(),
-        Services(),
+        const Services(),
       ],
     );
   }
