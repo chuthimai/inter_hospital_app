@@ -15,6 +15,7 @@ import 'package:inter_hospital_app/features/setting/data/datasources/theme_local
 import 'package:inter_hospital_app/features/setting/data/repositories/theme_repository_impl.dart';
 import 'package:inter_hospital_app/features/setting/domain/repositories/theme_repository.dart';
 import 'package:inter_hospital_app/features/setting/presentation/cubit/theme_cubit.dart';
+import 'package:inter_hospital_app/features/view_health_insurance/data/datasources/health_insurance_local_data_source.dart';
 import 'package:inter_hospital_app/splash_screen.dart';
 import 'share/themes/app_theme.dart';
 
@@ -25,17 +26,16 @@ void main() async {
   ]);
 
   // Auth
-  final AuthRemoteDataSource remoteDataSource = AuthRemoteDataSourceImpl();
-  final AuthLocalDataSource localDataSource = AuthLocalDataSourceImpl();
   final AuthRepository authRepository = AuthRepositoryImpl(
-    remoteDataSource: remoteDataSource,
-    localDataSource: localDataSource,
+    remoteDataSource: AuthRemoteDataSourceImpl(),
+    localDataSource: AuthLocalDataSourceImpl(),
+    smartContractLocalDataSource: SmartContractLocalDataSourceImpl(),
+    healthInsuranceLocalDataSource: HealthInsuranceLocalDataSourceImpl(),
   );
 
   // Theme
-  final ThemeLocalDataSource themeLocalDataSource = ThemeLocalDataSourceImpl();
   final ThemeRepository themeRepository = ThemeRepositoryImpl(
-    dataSource: themeLocalDataSource,
+    dataSource: ThemeLocalDataSourceImpl(),
   );
 
   // QR Code

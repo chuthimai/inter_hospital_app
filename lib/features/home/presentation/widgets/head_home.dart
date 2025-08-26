@@ -15,7 +15,7 @@ class HeadHome extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(16.sp, 8.sp, 16.sp, 16.sp),
         child: Column(
           children: [
-            AppBarHome(),
+            const AppBarHome(),
             SizedBox(height: 16.sp),
             const FastAction()
           ],

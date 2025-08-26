@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_state.dart';
 import 'package:inter_hospital_app/share/navigation/push_screen_factory.dart';
 import 'package:inter_hospital_app/share/types/push_screen_type.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class AppBarHome extends StatelessWidget {
+  const AppBarHome({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final authState = context.read<AuthCubit>().state;
+    if (authState is! AuthSuccess) return const Center();
+    final user = authState.user;
+
     return SafeArea(
         child: Row(
           children: [
@@ -17,7 +26,7 @@ class AppBarHome extends StatelessWidget {
                     .push(context)
               },
               child: CircleAvatar(
-                backgroundColor: Colors.grey,
+                backgroundImage: NetworkImage(user.photo),
                 radius: 24.sp,
               ),
             ),
@@ -25,7 +34,7 @@ class AppBarHome extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.sp),
                   child: Text(
-                    "Chu Thi Mai",
+                    user.name,
                     textAlign: TextAlign.start,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: Colors.white
