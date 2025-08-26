@@ -7,7 +7,7 @@ part 'user_model.g.dart';
 class UserModel {
   final int id;
   final String name;
-  final String email;
+  final String? email;
   final String role;
   final String photo;
   final String telecom;

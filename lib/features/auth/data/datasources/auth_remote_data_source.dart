@@ -11,7 +11,7 @@ abstract class AuthRemoteDataSource {
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<UserModel> login(LoginRequest loginRequest) async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
 
     if (loginRequest.id == 1 && loginRequest.password == "12345678") {
       final tokenStorage = SecureTokenStorage();
