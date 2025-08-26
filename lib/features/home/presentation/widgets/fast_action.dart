@@ -26,7 +26,7 @@ class FastAction extends StatelessWidget {
           icon: Icons.view_list_outlined,
           onClick: () => {
             PushScreenFactory()
-                .create(PushScreenType.viewCode)
+                .create(PushScreenType.viewListCodes)
                 .push(context)
           },
         ),

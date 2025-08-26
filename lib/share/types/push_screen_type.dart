@@ -8,7 +8,7 @@ enum PushScreenType {
   notification,
   profile,
   setting,
-  viewCode,
+  viewListCodes,
   viewFollowupAppointment,
   viewHealthInsurance,
   viewMedicalRecord,

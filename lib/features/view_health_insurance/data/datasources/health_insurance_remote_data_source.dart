@@ -8,7 +8,7 @@ abstract class HealthInsuranceRemoteDataSource {
 class HealthInsuranceRemoteDataSourceImpl implements HealthInsuranceRemoteDataSource {
   @override
   Future<HealthInsuranceModel?> getRemoteHealthInsurance(int userId) async {
-      await Future.delayed(const Duration(seconds: 2));
+      // await Future.delayed(const Duration(seconds: 2));
       return HealthInsuranceModel.fromJson(healthInsuranceDataFake);
   }
 }

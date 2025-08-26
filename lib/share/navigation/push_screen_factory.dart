@@ -10,7 +10,7 @@ import 'package:inter_hospital_app/share/navigation/implementations/otp_push_scr
 import 'package:inter_hospital_app/share/navigation/implementations/profile_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/profile_qr_code_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/setting_push_screen.dart';
-import 'package:inter_hospital_app/share/navigation/implementations/view_code_push_screen.dart';
+import 'package:inter_hospital_app/share/navigation/implementations/view_list_codes_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/view_followup_appointment_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/view_health_insurance_push_screen.dart';
 import 'package:inter_hospital_app/share/navigation/implementations/view_medical_record_push_screen.dart';
@@ -41,8 +41,8 @@ class PushScreenFactory {
         return ProfilePushScreen();
       case PushScreenType.setting:
         return SettingPushScreen();
-      case PushScreenType.viewCode:
-        return ViewCodePushScreen();
+      case PushScreenType.viewListCodes:
+        return ViewListCodesPushScreen();
       case PushScreenType.viewFollowupAppointment:
         return ViewFollowupAppointmentPushScreen();
       case PushScreenType.viewHealthInsurance:

@@ -22,9 +22,11 @@ class ProfileQrCode extends StatelessWidget {
         child: PrettyQrView.data(
           data: UserQrPayload.format(user),
           errorCorrectLevel: QrErrorCorrectLevel.H,
-          decoration: const PrettyQrDecoration(
-            shape: PrettyQrSmoothSymbol(),
-            quietZone: PrettyQrQuietZone.modules(2),
+          decoration: PrettyQrDecoration(
+            shape: PrettyQrSmoothSymbol(
+              color: Theme.of(context).dividerColor
+            ),
+            quietZone: const PrettyQrQuietZone.modules(2),
           ),
         ),
       ),

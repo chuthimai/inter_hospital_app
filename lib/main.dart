@@ -7,6 +7,10 @@ import 'package:inter_hospital_app/features/auth/data/datasources/auth_remote_da
 import 'package:inter_hospital_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:inter_hospital_app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:inter_hospital_app/features/create_code/data/datasources/smart_contract_local_data_source.dart';
+import 'package:inter_hospital_app/features/create_code/data/datasources/smart_contract_remote_data_source.dart';
+import 'package:inter_hospital_app/features/create_code/data/repositories/smart_contract_repository_impl.dart';
+import 'package:inter_hospital_app/features/create_code/presentation/cubit/qr_code_cubit.dart';
 import 'package:inter_hospital_app/features/setting/data/datasources/theme_local_data_source.dart';
 import 'package:inter_hospital_app/features/setting/data/repositories/theme_repository_impl.dart';
 import 'package:inter_hospital_app/features/setting/domain/repositories/theme_repository.dart';
@@ -34,16 +38,22 @@ void main() async {
     dataSource: themeLocalDataSource,
   );
 
+  // QR Code
+  final smartContractRepository = SmartContractRepositoryImpl(
+    localDataSource: SmartContractLocalDataSourceImpl(),
+    remoteDataSource: SmartContractRemoteDataSourceImpl(),
+  );
+
   // Bọc State toàn app
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
-        create: (context) =>
-            AuthCubit(authRepository)..getCurrentUser(),
+        create: (context) => AuthCubit(authRepository)..getCurrentUser(),
       ),
       BlocProvider(
         create: (context) => ThemeCubit(themeRepository)..getCurrentTheme(),
       ),
+      BlocProvider(create: (context) => QrCodeCubit(smartContractRepository))
     ],
     child: ScreenUtilInit(
       designSize: const Size(430, 932), // màn hình iphone 14 pro

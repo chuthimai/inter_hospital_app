@@ -7,7 +7,7 @@ class CreateCodePushScreen implements PushScreen {
   @override
   void push(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (ctx) => const CreateCodeScreen(),
+      builder: (ctx) => CreateCodeScreen(),
     ));
   }
 }
