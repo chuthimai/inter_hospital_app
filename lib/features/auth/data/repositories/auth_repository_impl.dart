@@ -1,7 +1,9 @@
 import 'package:inter_hospital_app/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:inter_hospital_app/features/auth/data/models/login_request.dart';
 import 'package:inter_hospital_app/features/auth/domain/entities/login_params.dart';
-import 'package:inter_hospital_app/share/utils/logger.dart';
+import 'package:inter_hospital_app/features/create_code/data/datasources/smart_contract_local_data_source.dart';
+import 'package:inter_hospital_app/features/view_health_insurance/data/datasources/health_insurance_local_data_source.dart';
+import 'package:inter_hospital_app/share/utils/app_logger.dart';
 
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -10,17 +12,24 @@ import '../datasources/auth_remote_data_source.dart';
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource _remoteDataSource;
   final AuthLocalDataSource _localDataSource;
+  final SmartContractLocalDataSource _smartContractLocalDataSource;
+  final HealthInsuranceLocalDataSource _healthInsuranceLocalDataSource;
 
   AuthRepositoryImpl({
     required AuthRemoteDataSource remoteDataSource,
     required AuthLocalDataSource localDataSource,
-  }) : _localDataSource = localDataSource, _remoteDataSource = remoteDataSource;
+    required SmartContractLocalDataSource smartContractLocalDataSource,
+    required HealthInsuranceLocalDataSource healthInsuranceLocalDataSource,
+  })  : _localDataSource = localDataSource,
+        _remoteDataSource = remoteDataSource,
+        _smartContractLocalDataSource = smartContractLocalDataSource,
+        _healthInsuranceLocalDataSource = healthInsuranceLocalDataSource;
 
   @override
   Future<User> login(LoginParams loginParams) async {
     try {
       final userModel =
-      await _remoteDataSource.login(LoginRequest.fromParams(loginParams));
+          await _remoteDataSource.login(LoginRequest.fromParams(loginParams));
       await _localDataSource.saveUser(userModel);
       return userModel.toEntity();
     } catch (e) {
@@ -32,6 +41,8 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<void> logout() async {
     await _localDataSource.deleteUser();
+    await _smartContractLocalDataSource.deleteAllSmartContracts();
+    await _healthInsuranceLocalDataSource.deleteLocalHealthInsurance();
   }
 
   @override

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:inter_hospital_app/features/home/presentation/widgets/fast_action_item_view.dart';
 import 'package:inter_hospital_app/share/navigation/push_screen_factory.dart';
 import 'package:inter_hospital_app/share/types/push_screen_type.dart';
-import 'package:inter_hospital_app/share/utils/logger.dart';
 
 class FastAction extends StatelessWidget {
   const FastAction({super.key});

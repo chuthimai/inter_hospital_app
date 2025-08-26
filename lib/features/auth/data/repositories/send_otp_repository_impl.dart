@@ -1,6 +1,6 @@
 import 'package:inter_hospital_app/features/auth/data/datasources/send_otp_remote_data_source.dart';
 import 'package:inter_hospital_app/features/auth/domain/repositories/send_otp_repository.dart';
-import 'package:inter_hospital_app/share/utils/logger.dart';
+import 'package:inter_hospital_app/share/utils/app_logger.dart';
 
 class SendOtpRepositoryImpl implements SendOtpRepository {
   final SendOtpRemoteDataSource _remoteDataSource;

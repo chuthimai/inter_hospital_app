@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:inter_hospital_app/share/utils/logger.dart';
+import 'package:inter_hospital_app/share/utils/app_logger.dart';
 import 'package:inter_hospital_app/share/widgets/custom_text_button.dart';
 import 'package:inter_hospital_app/share/widgets/otp_field.dart';
 

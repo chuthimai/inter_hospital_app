@@ -4,7 +4,7 @@ import 'package:inter_hospital_app/features/create_code/data/models/create_smart
 import 'package:inter_hospital_app/features/create_code/data/models/smart_contract_db_model.dart';
 import 'package:inter_hospital_app/features/create_code/domain/entities/create_smart_contract_params.dart';
 import 'package:inter_hospital_app/features/create_code/domain/entities/smart_contract.dart';
-import 'package:inter_hospital_app/share/utils/logger.dart';
+import 'package:inter_hospital_app/share/utils/app_logger.dart';
 
 import '../../domain/repositories/smart_contract_repository.dart';
 

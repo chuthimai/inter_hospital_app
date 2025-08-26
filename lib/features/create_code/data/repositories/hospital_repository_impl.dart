@@ -2,7 +2,7 @@ import 'package:inter_hospital_app/features/create_code/data/datasources/hospita
 import 'package:inter_hospital_app/features/create_code/data/datasources/hosptial_local_data_source.dart';
 import 'package:inter_hospital_app/features/create_code/data/models/hospital_db_model.dart';
 import 'package:inter_hospital_app/features/create_code/domain/entities/hospital.dart';
-import 'package:inter_hospital_app/share/utils/logger.dart';
+import 'package:inter_hospital_app/share/utils/app_logger.dart';
 
 import '../../domain/repositories/hosptital_repository.dart';
 

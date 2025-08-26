@@ -1,7 +1,7 @@
 import 'package:inter_hospital_app/features/auth/data/datasources/reset_password_remote_data_source.dart';
 import 'package:inter_hospital_app/features/auth/domain/entities/reset_password_params.dart';
 import 'package:inter_hospital_app/features/auth/domain/repositories/reset_password_repository.dart';
-import 'package:inter_hospital_app/share/utils/logger.dart';
+import 'package:inter_hospital_app/share/utils/app_logger.dart';
 
 class ResetPasswordRepositoryImpl implements ResetPasswordRepository {
   final ResetPasswordRemoteDataSource _remoteDataSource;

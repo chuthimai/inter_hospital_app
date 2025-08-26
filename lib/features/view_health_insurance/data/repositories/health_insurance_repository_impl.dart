@@ -1,7 +1,7 @@
 import 'package:inter_hospital_app/features/view_health_insurance/data/datasources/health_insurance_local_data_source.dart';
 import 'package:inter_hospital_app/features/view_health_insurance/data/datasources/health_insurance_remote_data_source.dart';
 import 'package:inter_hospital_app/features/view_health_insurance/domain/entities/health_insurance.dart';
-import 'package:inter_hospital_app/share/utils/logger.dart';
+import 'package:inter_hospital_app/share/utils/app_logger.dart';
 import '../../domain/repositories/health_insurance_repository.dart';
 
 class HealthInsuranceRepositoryImpl implements HealthInsuranceRepository {
@@ -22,8 +22,8 @@ class HealthInsuranceRepositoryImpl implements HealthInsuranceRepository {
       }
     } catch (e) {
       AppLogger().error("Local error: $e");
-      return null;
     }
+    return null;
   }
 
   Future<HealthInsurance?> _getRemoteHealthInsurance(int userId) async {
@@ -35,8 +35,8 @@ class HealthInsuranceRepositoryImpl implements HealthInsuranceRepository {
       }
     } catch (e) {
       AppLogger().error("Remote error: $e");
-      return null;
     }
+    return null;
   }
 
   @override

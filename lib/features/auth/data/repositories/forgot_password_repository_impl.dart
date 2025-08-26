@@ -1,7 +1,7 @@
 import 'package:inter_hospital_app/features/auth/data/datasources/forgot_password_remote_data_source.dart';
 import 'package:inter_hospital_app/features/auth/domain/entities/forgot_password_params.dart';
 import 'package:inter_hospital_app/features/auth/domain/repositories/forgot_password_repository.dart';
-import 'package:inter_hospital_app/share/utils/logger.dart';
+import 'package:inter_hospital_app/share/utils/app_logger.dart';
 
 class ForgotPasswordRepositoryImpl implements ForgotPasswordRepository {
   final ForgotPasswordRemoteDataSource _remoteDataSource;
