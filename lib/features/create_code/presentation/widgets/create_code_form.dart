@@ -48,7 +48,6 @@ class _CreateCodeFormState extends State<CreateCodeForm> {
                       hintText: "Nhập tên bệnh viện...",
                       prefixIcon: const Icon(Icons.search),
                       filled: true,
-                      fillColor: Colors.grey.shade100,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.r),
                       ),
