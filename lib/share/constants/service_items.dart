@@ -27,7 +27,7 @@ final List<ServiceItem> serviceItems = [
   ),
   ServiceItem(
     label: "Hồ sơ sức khoẻ",
-    iconData: Icons.folder_shared,
+    iconData: Icons.folder_shared_outlined,
     onTap: (BuildContext context) {
       PushScreenFactory()
           .create(PushScreenType.viewMedicalRecord)
@@ -36,7 +36,7 @@ final List<ServiceItem> serviceItems = [
   ),
   ServiceItem(
     label: "Đơn thuốc",
-    iconData: Icons.medical_services,
+    iconData: Icons.medical_services_outlined,
     onTap: (BuildContext context) {
       PushScreenFactory()
           .create(PushScreenType.viewPrescription)
@@ -45,7 +45,7 @@ final List<ServiceItem> serviceItems = [
   ),
   ServiceItem(
     label: "Giấy chuyển viện",
-    iconData: Icons.article,
+    iconData: Icons.article_outlined,
     onTap: (BuildContext context) {
       PushScreenFactory()
           .create(PushScreenType.viewTransferLetter)
