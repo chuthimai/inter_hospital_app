@@ -1,3 +1,4 @@
+import 'package:inter_hospital_app/features/notification/data/models/notification_db_model.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -14,6 +15,7 @@ class IsarService {
       [
         HospitalDbModelSchema,
         SmartContractDbModelSchema,
+        NotificationDbModelSchema,
       ],
       directory: dir.path,
       inspector: true,

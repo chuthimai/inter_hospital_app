@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,7 +6,6 @@ import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_cubit.d
 import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_state.dart';
 import 'package:inter_hospital_app/share/utils/user_qr_payload.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
-
 
 class ProfileQrCode extends StatelessWidget {
   const ProfileQrCode({super.key});
@@ -15,22 +15,30 @@ class ProfileQrCode extends StatelessWidget {
     final authState = context.read<AuthCubit>().state;
     if (authState is! AuthSuccess) return const Center();
     final user = authState.user;
-    
+
     return Padding(
       padding: EdgeInsets.all(32.sp),
       child: Center(
-        child: PrettyQrView.data(
-          data: UserQrPayload.format(user),
-          errorCorrectLevel: QrErrorCorrectLevel.H,
-          decoration: PrettyQrDecoration(
-            shape: PrettyQrSmoothSymbol(
-              color: Theme.of(context).dividerColor
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Mã QR thông tin định danh",
+              style: Theme.of(context).textTheme.displaySmall,
             ),
-            quietZone: const PrettyQrQuietZone.modules(2),
-          ),
+            SizedBox(height: 8.sp),
+            PrettyQrView.data(
+              data: UserQrPayload.format(user),
+              errorCorrectLevel: QrErrorCorrectLevel.H,
+              decoration: PrettyQrDecoration(
+                shape:
+                    PrettyQrSmoothSymbol(color: Theme.of(context).dividerColor),
+                quietZone: const PrettyQrQuietZone.modules(2),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
-
 }

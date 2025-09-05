@@ -70,8 +70,11 @@ final ThemeData darkTheme = ThemeData(
 
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
-      foregroundColor: AppColors.primaryDark,
-      textStyle: AppTextStyles.body,
+      foregroundColor: Colors.grey,
+      textStyle: TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w600,
+      ),
     ),
   ),
 

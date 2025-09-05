@@ -19,20 +19,15 @@ class Services extends StatelessWidget {
               "Các dịch vụ",
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            GridView(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              padding: EdgeInsets.all(8.sp),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                childAspectRatio: 2/4,
-                crossAxisSpacing: 4.sp,
-                mainAxisSpacing: 4.sp,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ...serviceItems.map((e) => ServiceItemView(serviceItem: e))
+                ],
               ),
-              children: [
-                ...serviceItems.map((e) => ServiceItemView(serviceItem: e))
-              ],
-            )
+            ),
           ],
         ),
       ),

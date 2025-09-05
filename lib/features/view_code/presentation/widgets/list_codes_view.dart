@@ -35,6 +35,7 @@ class ListCodesView extends StatelessWidget {
             itemBuilder: (context, index) {
               final code = codes[index];
               return Card(
+                key: ValueKey(code.id),
                 margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 child: ListTile(
                   leading: Icon(

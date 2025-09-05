@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "830041646492",
+    "project_id": "flutter-app-8662f",
+    "storage_bucket": "flutter-app-8662f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830041646492:android:2efd5002296a848d18d459",
+        "android_client_info": {
+          "package_name": "com.example.hospital_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACLhSwpdi-o-lZ7vyQ3eA1j5TXNgCLj-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830041646492:android:bcca52cc76c9ae4418d459",
+        "android_client_info": {
+          "package_name": "com.example.inter_hospital_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACLhSwpdi-o-lZ7vyQ3eA1j5TXNgCLj-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

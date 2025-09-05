@@ -1,9 +1,11 @@
 import 'dart:io';
 
-import 'package:inter_hospital_app/share/constants/file.dart';
-import 'package:inter_hospital_app/share/utils/rolling_file_writer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
+
+import '../constants/file.dart';
+import 'rolling_file_writer.dart';
 
 class AppLogger {
   static final AppLogger _instance = AppLogger();
@@ -14,7 +16,11 @@ class AppLogger {
     _logger = Logger(
       printer: SimplePrinter()
     );
-    createWritingFiles();
+
+    if (kDebugMode) {
+      // Chỉ tạo file log khi debug
+      createWritingFiles();
+    }
   }
 
   Future<void> createWritingFiles() async {
@@ -26,15 +32,25 @@ class AppLogger {
         RollingFileWriter(files: files, maxSize: FileConstants.maxLogSize);
   }
 
-  void debug(dynamic message) => logger.d(message);
+  void debug(dynamic message) {
+    if (kDebugMode) _logger.d(message);
+  }
 
-  void info(dynamic message) => logger.i(message);
+  void info(dynamic message) {
+    if (kDebugMode) _logger.i(message);
+  }
 
-  void warn(dynamic message) => logger.w(message);
+  void warn(dynamic message) {
+    if (kDebugMode) _logger.w(message);
+  }
 
-  void error(dynamic message) => logger.e(message);
+  void error(dynamic message) {
+    if (kDebugMode) _logger.e(message);
+  }
 
-  void writeFile(dynamic message) => _writingFiles.write(message.toString());
+  void writeFile(dynamic message) {
+    if (kDebugMode) _writingFiles.write(message.toString());
+  }
 
   Logger get logger => _instance._logger;
 }

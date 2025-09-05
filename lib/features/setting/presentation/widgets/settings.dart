@@ -8,6 +8,7 @@ import 'package:inter_hospital_app/share/types/push_screen_type.dart';
 import 'package:inter_hospital_app/share/widgets/app_snack_bar.dart';
 import 'package:inter_hospital_app/share/widgets/custom_button_outline.dart';
 
+import '../cubit/notification_setting_cubit.dart';
 import '../cubit/theme_cubit.dart';
 
 class Settings extends StatelessWidget {
@@ -57,12 +58,18 @@ class Settings extends StatelessWidget {
                   ),
                 ),
                 const Divider(),
-                SwitchListTile(
-                  secondary: const Icon(Icons.notifications_outlined),
-                  title: const Text("Thông báo"),
-                  value: true,
-                  onChanged: (value) {
-                    // TODO: lưu setting vào local (SharedPreferences)
+                BlocBuilder<NotificationSettingCubit, bool>(
+                  builder: (context, isEnabled) {
+                    return SwitchListTile(
+                      secondary: isEnabled
+                          ? const Icon(Icons.notifications_outlined)
+                          : const Icon(Icons.notifications_off_outlined),
+                      title: Text("Thông báo đang ${isEnabled ? "bật" : "tắt"}"),
+                      value: isEnabled,
+                      onChanged: (_) {
+                        context.read<NotificationSettingCubit>().switchNotificationState();
+                      },
+                    );
                   },
                 ),
                 const Divider(),

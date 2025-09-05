@@ -6,8 +6,8 @@ class AppColors {
   static const Color primaryDark = Color(0xFF1B3C53);
 
   // ===== BACKGROUND COLORS =====
-  static const Color backgroundLight = Color(0xFFEFEFEF);
-  static const Color backgroundDark = Color(0xFF1A2130);
+  static const Color backgroundLight = Color(0xFFFFFFFF);
+  static const Color backgroundDark = Color(0xFF040303); // 1A2130
 
   // ===== TEXT COLORS =====
   static const Color textLight = Color(0xFF000000);
@@ -18,7 +18,7 @@ class AppColors {
   static const Color subtextDark = Color(0xFFCCCCCC);
 
   // ===== CARD / SURFACE COLORS =====
-  static const Color cardLight = Color(0xE8FFFFFF);
+  static const Color cardLight = Color(0xFFEFEFEF);
   static const Color cardDark = Color(0xFF2C2F38);
 
   // ===== BORDER COLORS =====

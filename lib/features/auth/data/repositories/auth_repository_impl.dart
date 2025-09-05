@@ -2,6 +2,7 @@ import 'package:inter_hospital_app/features/auth/data/datasources/auth_local_dat
 import 'package:inter_hospital_app/features/auth/data/models/login_request.dart';
 import 'package:inter_hospital_app/features/auth/domain/entities/login_params.dart';
 import 'package:inter_hospital_app/features/create_code/data/datasources/smart_contract_local_data_source.dart';
+import 'package:inter_hospital_app/features/notification/data/datasource/notification_local_data_source.dart';
 import 'package:inter_hospital_app/features/view_health_insurance/data/datasources/health_insurance_local_data_source.dart';
 import 'package:inter_hospital_app/share/utils/app_logger.dart';
 
@@ -14,16 +15,20 @@ class AuthRepositoryImpl implements AuthRepository {
   final AuthLocalDataSource _localDataSource;
   final SmartContractLocalDataSource _smartContractLocalDataSource;
   final HealthInsuranceLocalDataSource _healthInsuranceLocalDataSource;
+  final NotificationLocalDataSource _notificationLocalDataSource;
+
 
   AuthRepositoryImpl({
     required AuthRemoteDataSource remoteDataSource,
     required AuthLocalDataSource localDataSource,
     required SmartContractLocalDataSource smartContractLocalDataSource,
     required HealthInsuranceLocalDataSource healthInsuranceLocalDataSource,
+    required NotificationLocalDataSource notificationLocalDataSource,
   })  : _localDataSource = localDataSource,
         _remoteDataSource = remoteDataSource,
         _smartContractLocalDataSource = smartContractLocalDataSource,
-        _healthInsuranceLocalDataSource = healthInsuranceLocalDataSource;
+        _healthInsuranceLocalDataSource = healthInsuranceLocalDataSource,
+        _notificationLocalDataSource = notificationLocalDataSource;
 
   @override
   Future<User> login(LoginParams loginParams) async {
@@ -43,6 +48,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await _localDataSource.deleteUser();
     await _smartContractLocalDataSource.deleteAllSmartContracts();
     await _healthInsuranceLocalDataSource.deleteLocalHealthInsurance();
+    await _notificationLocalDataSource.deleteAllNotifications();
   }
 
   @override

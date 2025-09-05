@@ -12,6 +12,7 @@ import 'package:inter_hospital_app/features/create_code/presentation/cubit/qr_co
 import 'package:inter_hospital_app/share/navigation/push_screen_factory.dart';
 import 'package:inter_hospital_app/share/types/push_screen_type.dart';
 import 'package:inter_hospital_app/share/widgets/app_snack_bar.dart';
+import 'package:inter_hospital_app/share/widgets/custom_dropdown_search.dart';
 
 class CreateCodeForm extends StatefulWidget {
   const CreateCodeForm({super.key});
@@ -38,43 +39,19 @@ class _CreateCodeFormState extends State<CreateCodeForm> {
       return Row(
         children: [
           Expanded(
-            child: DropdownSearch<Hospital>(
+            child: CustomDropdownSearch<Hospital>(
               items: _allHospitals,
+              selectedItem: _selectedHospital,
               itemAsString: (h) => h.name,
-              popupProps: PopupProps.dialog(
-                  showSearchBox: true,
-                  searchFieldProps: TextFieldProps(
-                    decoration: InputDecoration(
-                      hintText: "Nhập tên bệnh viện...",
-                      prefixIcon: const Icon(Icons.search),
-                      filled: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                    ),
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  dialogProps: DialogProps(
-                    insetPadding:
-                        EdgeInsets.symmetric(horizontal: 32.w, vertical: 128.h),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                  )),
-              dropdownDecoratorProps: const DropDownDecoratorProps(
-                dropdownSearchDecoration: InputDecoration(
-                  labelText: "Chọn bệnh viện",
-                  border: OutlineInputBorder(),
-                  hintText: "Tìm kiếm...",
-                ),
-              ),
+              labelText: "Chọn bệnh viện",
+              hintText: "Tìm kiếm...",
+              searchHint: "Nhập tên bệnh viện...",
               onChanged: (hospital) {
                 setState(() {
                   _selectedHospital = hospital;
                 });
               },
-              selectedItem: _selectedHospital,
-            ),
+            )
           ),
           SizedBox(width: 8.w),
           SizedBox(

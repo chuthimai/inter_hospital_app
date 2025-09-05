@@ -47,6 +47,10 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   pretty_qr_code: ^3.5.0
   dropdown_search: ^5.0.6
+  firebase_analytics: any
+  firebase_core: ^2.32.0
+  firebase_messaging: ^14.7.1
+  flutter_local_notifications: ^18.0.1
 
 dev_dependencies:
   flutter_test:
