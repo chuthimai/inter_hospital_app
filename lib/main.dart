@@ -8,6 +8,7 @@ import 'package:inter_hospital_app/features/auth/data/datasources/auth_remote_da
 import 'package:inter_hospital_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:inter_hospital_app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:inter_hospital_app/features/auth/presentation/view/login_screen.dart';
 import 'package:inter_hospital_app/features/create_code/data/datasources/smart_contract_local_data_source.dart';
 import 'package:inter_hospital_app/features/create_code/data/datasources/smart_contract_remote_data_source.dart';
 import 'package:inter_hospital_app/features/create_code/data/repositories/smart_contract_repository_impl.dart';
@@ -31,6 +32,9 @@ import 'package:inter_hospital_app/share/notification/local_notification_service
 import 'package:inter_hospital_app/share/notification/push_notification_service.dart';
 import 'package:inter_hospital_app/splash_screen.dart';
 import 'share/themes/app_theme.dart';
+
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -129,6 +133,10 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,
+      navigatorKey: navigatorKey,
+      routes: {
+        '/login': (context) => const LoginScreen(),
+      },
       home: const SplashScreen(),
     );
   }
