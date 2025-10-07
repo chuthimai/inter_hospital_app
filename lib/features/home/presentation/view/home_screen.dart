@@ -40,12 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
     super.didChangeDependencies();
     _pages = [
       const Home(),
-      BlocProvider(
-        create: (context) => HealthInsuranceCubit(_repo),
-        child: const HealthInsuranceView(),
-      ),
+      // BlocProvider(
+      //   create: (context) => HealthInsuranceCubit(_repo),
+      //   child: const HealthInsuranceView(),
+      // ),
       const ProfileQrCode(),
-      const MedicalRecords(),
+      // const MedicalRecords(),
       const Settings()
     ];
   }

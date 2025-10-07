@@ -24,24 +24,10 @@ class NavigationBarHome extends StatelessWidget {
         ),
 
         BottomNavigationBarItem(
-            icon: Icon(Icons.health_and_safety_outlined),
-            activeIcon: Icon(Icons.health_and_safety),
-            label: "Bảo hiểm y tế",
-            tooltip: 'Bảo hiểm y tế'
-        ),
-
-        BottomNavigationBarItem(
             icon: Icon(Icons.qr_code_2_outlined),
             activeIcon: Icon(Icons.qr_code_2),
             label: "QR code",
             tooltip: 'QR code'
-        ),
-
-        BottomNavigationBarItem(
-            icon: Icon(Icons.folder_shared_outlined),
-            activeIcon: Icon(Icons.folder_shared),
-            label: "Hồ sơ sức khoẻ",
-            tooltip: 'Hồ sơ sức khoẻ'
         ),
 
         BottomNavigationBarItem(
