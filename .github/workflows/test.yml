@@ -1,0 +1,32 @@
+name: Flutter Test
+
+on:
+  push:
+    branches: [ "test" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Lấy mã nguồn
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      # 2. Cài Flutter SDK
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.19.0"
+
+      # 3. Cài dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 4. Phân tích code (hiển thị warning nhưng ko dừng)
+      - name: Analyze project source
+        run: flutter analyze || true
+
+      # 5. Chạy test (optional)
+      - name: Run tests
+        run: flutter test

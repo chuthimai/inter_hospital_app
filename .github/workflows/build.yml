@@ -1,0 +1,56 @@
+name: Flutter Android Build
+
+on:
+  push:
+    branches: [ "build-app/android" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Lấy mã nguồn
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      # 2. Cài Flutter SDK
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.19.0"
+
+      # 3. Cài dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 4. Phân tích code (hiển thị warning nhưng ko dừng)
+      - name: Analyze project source
+        run: flutter analyze || true
+
+      # 5. Chạy test (optional)
+      - name: Run tests
+        run: flutter test
+
+      - name: Run tests and show pass percentage
+        run: |
+          flutter test --machine > test_output.json
+          passed=$(grep -c '"result":"success"' test_output.json || true)
+          failed=$(grep -c '"result":"failure"' test_output.json || true)
+          total=$((passed + failed))
+          if [ "$total" -gt 0 ]; then
+            percent=$((100 * passed / total))
+            echo "----- Passed: $passed / $total tests ($percent%)"
+          else
+            echo "xxxxx No tests found."
+          fi
+
+      # 6. Build file APK (release)
+      - name: Build Android APK
+        run: flutter build apk --release --dart-define=BASE_URL=${{ secrets.PROD_BASE_URL }}
+
+      # 7. Lưu file APK ra artifacts để tải về
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: build/app/outputs/flutter-apk/app-release.apk

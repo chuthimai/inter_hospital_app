@@ -36,7 +36,7 @@ class RemoteService {
 
   RemoteService._internal(this._authCubit)
       : _dio = Dio(BaseOptions(
-          baseUrl: AppConfig.devBaseUrl,
+          baseUrl: AppConfig.baseUrl,
           connectTimeout: const Duration(seconds: 15),
           receiveTimeout: const Duration(seconds: 30),
           headers: {"Accept": "application/json"},
@@ -44,7 +44,7 @@ class RemoteService {
         // Dio riêng cho refresh token
         _tokenManager = TokenManager(
           SecureTokenStorage(),
-          Dio(BaseOptions(baseUrl: AppConfig.devBaseUrl)),
+          Dio(BaseOptions(baseUrl: AppConfig.baseUrl)),
         ) {
     // Logging (chỉ khi debug)
     if (kDebugMode) {
