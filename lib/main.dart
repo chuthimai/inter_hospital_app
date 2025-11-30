@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,9 +46,12 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Khởi tạo Firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  if (!Platform.isIOS && !Platform.isMacOS) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+
   runApp(const InitializerApp());
 }
 
@@ -95,6 +100,7 @@ class InitializerApp extends StatelessWidget {
       ]),
 
       // Khởi tạo Push Notification trước khi mở app
+    if (!Platform.isIOS && !Platform.isMacOS)
       PushNotificationService.init(
         notificationRepository: notificationRepository,
         notificationSettingRepository: notificationSettingRepository,
