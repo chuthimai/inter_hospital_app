@@ -1,14 +1,11 @@
-import 'package:hospital_app/features/view_medical_record/data/models/patient_record_db_model.dart';
-import 'package:hospital_app/features/view_medical_record/domain/entities/enum/record_status.dart';
-import 'package:hospital_app/share/utils/app_logger.dart';
-import 'package:hospital_app/share/utils/pdf_file_manager.dart';
 import 'package:inter_hospital_app/share/utils/app_logger.dart';
+import 'package:inter_hospital_app/share/utils/pdf_file_manager.dart';
 
-import '../../domain/entities/patient_record.dart';
+import '../../domain/entities/medical_record.dart';
 import '../../domain/repositories/medical_record_repository.dart';
 import '../datasource/medical_record_local_data_source.dart';
 import '../datasource/medical_record_remote_data_source.dart';
-import '../models/patient_record_api_model.dart';
+import '../models/patient_record_db_model.dart';
 
 class MedicalRecordRepositoryImpl implements MedicalRecordRepository {
   final MedicalRecordLocalDataSource _localDataSource;
@@ -30,7 +27,7 @@ class MedicalRecordRepositoryImpl implements MedicalRecordRepository {
   }
 
   @override
-  Future<List<PatientRecord>> getAllPatientRecords() async {
+  Future<List<MedicalRecord>> getAllPatientRecords() async {
     try {
       final patientRecordsRemote =
           await _remoteDataSource.getAllPatientRecords();
@@ -50,36 +47,12 @@ class MedicalRecordRepositoryImpl implements MedicalRecordRepository {
   }
 
   @override
-  Future<PatientRecord?> getDetailPatientRecord(
-      PatientRecord patientRecord) async {
-    try {
-      final patientRecordLocal = await _localDataSource.getDetailPatientRecord(
-          PatientRecordDbModel.fromEntity(patientRecord));
-      if (patientRecordLocal != null) return patientRecordLocal.toEntity();
-    } catch (e) {
-      AppLogger().error("Local error: $e");
-    }
-
-    try {
-      final patientRecordRemote =
-          await _remoteDataSource.getDetailPatientRecord(
-              PatientRecordApiModel.fromEntity(patientRecord));
-      await savePatientRecord(patientRecord);
-      return patientRecordRemote.toEntity();
-    } catch (e) {
-      AppLogger().error("Remote/Local error: $e");
-      rethrow;
-    }
-  }
-
-  @override
-  Future<void> savePatientRecord(PatientRecord patientRecord) async {
-    if (patientRecord.status != RecordStatus.complete) return;
+  Future<void> savePatientRecord(MedicalRecord patientRecord) async {
     if (patientRecord.pathUrl == null) return;
     try {
       final pathFilePdf = await PdfFileManager.downloadPdf(
         patientRecord.pathUrl!,
-        "BA${patientRecord.id}",
+        "BA${patientRecord.id}_${patientRecord.hospital.id}",
       );
 
       patientRecord.pathFilePdf = pathFilePdf;
@@ -91,5 +64,11 @@ class MedicalRecordRepositoryImpl implements MedicalRecordRepository {
         throw Exception("Tải file thất bại");
       }
     }
+  }
+
+  @override
+  Future<MedicalRecord?> getDetailPatientRecord(MedicalRecord patientRecord) {
+    // TODO: implement getDetailPatientRecord
+    throw UnimplementedError();
   }
 }

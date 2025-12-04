@@ -28,6 +28,7 @@ class Settings extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(height: 20.sp),
                 Hero(
                   tag: "change_password",
                   child: Material(

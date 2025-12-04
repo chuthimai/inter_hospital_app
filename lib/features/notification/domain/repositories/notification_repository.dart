@@ -6,5 +6,5 @@ abstract class NotificationRepository {
   Future<void> markReadNotifications();
   Future<void> markReadNotification(AppNotification notification);
   Future<void> deleteAllNotifications();
-  Future<bool> hasNotReadNotification();
+  Stream<bool> hasNotReadNotification();
 }

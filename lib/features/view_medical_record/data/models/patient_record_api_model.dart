@@ -1,53 +1,36 @@
-import 'package:hospital_app/features/view_medical_record/domain/entities/enum/record_status.dart';
 import 'package:json_annotation/json_annotation.dart';
-import '../../../view_prescription/data/models/prescription_api_model.dart';
-import '../../domain/entities/patient_record.dart';
-import 'service_report_api_model.dart';
+import '../../domain/entities/medical_record.dart';
+import 'hospital_api_model.dart';
 
 part 'patient_record_api_model.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class PatientRecordApiModel {
   final int identifier;
-  final bool status;
   final DateTime createdTime;
-  final List<ServiceReportApiModel> serviceReports;
-  final PrescriptionApiModel? prescription;
+  final HospitalApiModel hospital;
   final String? pathUrl;
+  final String? pathFilePdf;
 
   PatientRecordApiModel({
     required this.identifier,
-    required this.status,
     required this.createdTime,
-    this.serviceReports = const [],
-    this.prescription,
+    required this.hospital,
     this.pathUrl,
+    this.pathFilePdf,
   });
 
   factory PatientRecordApiModel.fromJson(Map<String, dynamic> json) =>
       _$PatientRecordApiModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PatientRecordApiModelToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$PatientRecordApiModelToJson(this);
 
-  /// API → Domain
-  PatientRecord toEntity() => PatientRecord(
+  MedicalRecord toEntity() => MedicalRecord(
     id: identifier,
-    status: status ? RecordStatus.complete : RecordStatus.incomplete,
     createdTime: createdTime,
-    serviceReports: serviceReports.map((r) => r.toEntity()).toList(),
-    prescription: prescription?.toEntity(),
+    hospital: hospital.toEntity(),
     pathUrl: pathUrl,
+    pathFilePdf: pathFilePdf,
   );
-
-  /// Domain → API
-  factory PatientRecordApiModel.fromEntity(PatientRecord entity) =>
-      PatientRecordApiModel(
-        identifier: entity.id,
-        status: entity.status == RecordStatus.complete,
-        createdTime: entity.createdTime,
-        prescription: entity.prescription != null
-            ? PrescriptionApiModel.fromEntity(entity.prescription!)
-            : null,
-        pathUrl: entity.pathUrl,
-      );
 }

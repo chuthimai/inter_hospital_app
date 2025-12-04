@@ -9,6 +9,7 @@ class CustomTextFormField extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final FormFieldSetter<String>? onSaved;
   final TextInputType? keyboardType;
+  final List<String>? autofillHints;
 
   const CustomTextFormField({
     super.key,
@@ -19,6 +20,7 @@ class CustomTextFormField extends StatefulWidget {
     this.validator,
     this.onSaved,
     this.keyboardType,
+    this.autofillHints,
   });
 
   @override
@@ -36,6 +38,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       validator: widget.validator,
       onSaved: widget.onSaved,
       keyboardType: widget.keyboardType,
+      autofillHints: widget.autofillHints,
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: TextStyle(

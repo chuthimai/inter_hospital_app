@@ -29,7 +29,7 @@ class CustomButtonOutline extends StatelessWidget {
             borderRadius: BorderRadius.circular(12), // bo góc
             side: BorderSide(
               color: isDark
-                  ? Colors.white38
+                  ? Theme.of(context).cardColor
                   : Theme.of(context).primaryColor, // màu viền
               width: 2, // độ dày viền
             ),
@@ -40,7 +40,9 @@ class CustomButtonOutline extends StatelessWidget {
           style: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.w600,
-            color: isDark ? Colors.white38 : Theme.of(context).primaryColor,
+            color: isDark
+                ? Theme.of(context).cardColor
+                : Theme.of(context).primaryColor,
           ),
         ),
       ),

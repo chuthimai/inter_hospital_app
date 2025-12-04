@@ -1,4 +1,4 @@
-import 'package:hospital_app/share/db/isar_service.dart';
+import 'package:inter_hospital_app/share/db/isar_service.dart';
 import 'package:isar/isar.dart';
 
 import '../models/patient_record_db_model.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inter_hospital_app/share/widgets/verification_text_field.dart';
+
+import 'verification_text_field.dart';
 
 class OtpField extends StatefulWidget {
   final int length;

@@ -1,5 +1,7 @@
 class ForgotPasswordParams {
-  final int id;
+  final int _id;
 
-  ForgotPasswordParams({required this.id});
+  ForgotPasswordParams({required int id}) : _id = id;
+
+  int get id => _id;
 }

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inter_hospital_app/features/auth/domain/entities/login_params.dart';
-import 'package:inter_hospital_app/features/auth/domain/repositories/auth_repository.dart';
 
+import '../../domain/entities/login_params.dart';
+import '../../domain/repositories/auth_repository.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {

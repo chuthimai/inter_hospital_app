@@ -41,6 +41,8 @@ class AppSnackBar {
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.white.withOpacity(0.9),
         duration: const Duration(seconds: 3),
+        dismissDirection: DismissDirection.horizontal,
+        margin: EdgeInsets.fromLTRB(12.sp, 0, 12.sp, MediaQuery.of(context).size.height/6 * 5),
         content: Row(
           children: [
             Icon(icon, color: iconColor),

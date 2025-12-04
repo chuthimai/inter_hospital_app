@@ -22,7 +22,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 32.sp,
-                    vertical: 16.sp,
+                    vertical: 24.sp,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,15 +46,26 @@ class ForgotPasswordScreen extends StatelessWidget {
                       SizedBox(height: 16.h),
                       CustomButton(
                         text: "Nhận mã OTP về điện thoại",
-                        onPressed: () => PushScreenFactory()
-                            .create(PushScreenType.otp)
-                            .push(context),
+                        onPressed: () => {
+                          PushScreenFactory()
+                              .create(PushScreenType.otp)
+                              .push(context)
+                        },
                       ),
-                      CustomTextButton(
-                        text: "Đăng nhập?",
-                        onPressed: () => PushScreenFactory()
-                            .create(PushScreenType.login)
-                            .push(context),
+                      Row(
+                        children: [
+                          const Spacer(),
+                          CustomTextButton(
+                            text: "Đăng nhập?",
+                            padding: EdgeInsets.only(top: 12.sp),
+                            fontSize: 14.sp,
+                            onPressed: () => {
+                              PushScreenFactory()
+                                  .create(PushScreenType.login)
+                                  .push(context)
+                            },
+                          ),
+                        ],
                       )
                     ],
                   ),

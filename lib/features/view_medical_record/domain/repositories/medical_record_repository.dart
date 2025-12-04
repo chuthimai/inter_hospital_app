@@ -1,9 +1,9 @@
-import '../entities/patient_record.dart';
+import '../entities/medical_record.dart';
 
 abstract class MedicalRecordRepository {
-  Future<List<PatientRecord>> getAllPatientRecords();  // api + local
-  Future<PatientRecord?> getDetailPatientRecord(PatientRecord patientRecord);  // api + local
+  Future<List<MedicalRecord>> getAllPatientRecords();  // api + local
+  Future<MedicalRecord?> getDetailPatientRecord(MedicalRecord patientRecord);  // api + local
   // Chỉ lưu patientRecord đã đóng
-  Future<void> savePatientRecord(PatientRecord patientRecord);  // local
+  Future<void> savePatientRecord(MedicalRecord patientRecord);  // local
   Future<void> deleteAllPatientRecords();  // local
 }

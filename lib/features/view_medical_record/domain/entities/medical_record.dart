@@ -1,16 +1,16 @@
-import 'enum/record_status.dart';
+import 'hospital.dart';
 
-class PatientRecord {
+class MedicalRecord {
   final int id;
-  final RecordStatus status;
   final DateTime createdTime;
+  final Hospital hospital;
   final String? pathUrl;
   String? pathFilePdf;
 
-  PatientRecord({
+  MedicalRecord({
     required this.id,
-    this.status = RecordStatus.complete,
     required this.createdTime,
+    required this.hospital,
     this.pathUrl,
     this.pathFilePdf,
   });

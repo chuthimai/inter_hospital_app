@@ -30,7 +30,7 @@ import 'package:inter_hospital_app/features/setting/domain/repositories/notifica
 import 'package:inter_hospital_app/features/setting/domain/repositories/theme_repository.dart';
 import 'package:inter_hospital_app/features/setting/presentation/cubit/notification_setting_cubit.dart';
 import 'package:inter_hospital_app/features/setting/presentation/cubit/theme_cubit.dart';
-import 'package:inter_hospital_app/features/view_health_insurance/data/datasources/health_insurance_local_data_source.dart';
+import 'package:inter_hospital_app/features/view_medical_record/data/datasource/medical_record_local_data_source.dart';
 import 'package:inter_hospital_app/firebase_options.dart';
 import 'package:inter_hospital_app/share/dio/remote_service.dart';
 import 'package:inter_hospital_app/share/navigation/push_screen_factory.dart';
@@ -64,9 +64,8 @@ class InitializerApp extends StatelessWidget {
     final AuthRepository authRepository = AuthRepositoryImpl(
       remoteDataSource: AuthRemoteDataSourceImpl(),
       localDataSource: AuthLocalDataSourceImpl(),
-      smartContractLocalDataSource: SmartContractLocalDataSourceImpl(),
-      healthInsuranceLocalDataSource: HealthInsuranceLocalDataSourceImpl(),
       notificationLocalDataSource: NotificationLocalDataSourceImpl(),
+      medicalRecordLocalDataSource: MedicalRecordLocalDataSourceImpl(),
     );
     final AuthCubit authCubit = AuthCubit(authRepository);
 

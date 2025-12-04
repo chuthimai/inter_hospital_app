@@ -10,27 +10,19 @@ PatientRecordApiModel _$PatientRecordApiModelFromJson(
         Map<String, dynamic> json) =>
     PatientRecordApiModel(
       identifier: (json['identifier'] as num).toInt(),
-      status: json['status'] as bool,
       createdTime: DateTime.parse(json['createdTime'] as String),
-      serviceReports: (json['serviceReports'] as List<dynamic>?)
-              ?.map((e) =>
-                  ServiceReportApiModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      prescription: json['prescription'] == null
-          ? null
-          : PrescriptionApiModel.fromJson(
-              json['prescription'] as Map<String, dynamic>),
+      hospital:
+          HospitalApiModel.fromJson(json['hospital'] as Map<String, dynamic>),
       pathUrl: json['pathUrl'] as String?,
+      pathFilePdf: json['pathFilePdf'] as String?,
     );
 
 Map<String, dynamic> _$PatientRecordApiModelToJson(
         PatientRecordApiModel instance) =>
     <String, dynamic>{
       'identifier': instance.identifier,
-      'status': instance.status,
       'createdTime': instance.createdTime.toIso8601String(),
-      'serviceReports': instance.serviceReports.map((e) => e.toJson()).toList(),
-      'prescription': instance.prescription?.toJson(),
+      'hospital': instance.hospital,
       'pathUrl': instance.pathUrl,
+      'pathFilePdf': instance.pathFilePdf,
     };

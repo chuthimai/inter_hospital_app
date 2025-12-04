@@ -49,9 +49,16 @@ class OtpScreen extends StatelessWidget {
                               //TODO: Cần hành động gửi otp
                             },
                           ),
-                          CustomTextButton(
-                            text: "Gửi lại mã OTP?",
-                            onPressed: () => {},
+                          Row(
+                            children: [
+                              const Spacer(),
+                              CustomTextButton(
+                                text: "Gửi lại mã OTP?",
+                                padding: EdgeInsets.only(top: 12.sp),
+                                fontSize: 14.sp,
+                                onPressed: () => {},
+                              ),
+                            ],
                           )
                         ],
                       ),

@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import '../../domain/entities/user.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -9,22 +11,22 @@ class UserModel {
   final String name;
   final String? email;
   final String role;
-  final String photo;
-  final String telecom;
+  final String? photo;
+  final String? telecom;
   final bool gender;
-  final DateTime birthDate;
-  final String address;
+  final String birthDate;
+  final String? address;
 
   const UserModel({
     required this.id,
     required this.name,
-    required this.email,
+    this.email,
     required this.role,
-    required this.photo,
-    required this.telecom,
+    this.photo,
+    this.telecom,
     required this.gender,
     required this.birthDate,
-    required this.address,
+    this.address,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -32,15 +34,18 @@ class UserModel {
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
-  User toEntity() => User(
-        id: id,
-        name: name,
-        email: email,
-        role: role,
-        photo: photo,
-        telecom: telecom,
-        gender: gender,
-        birthDate: birthDate,
-        address: address,
-      );
+  User toEntity() {
+    DateFormat format = DateFormat("yyyy-MM-dd");
+    return User(
+      id: id,
+      name: name,
+      email: email,
+      role: role,
+      photo: photo,
+      telecom: telecom,
+      gender: gender,
+      birthDate: format.parse(birthDate),
+      address: address,
+    );
+  }
 }

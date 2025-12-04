@@ -8,7 +8,7 @@ abstract class NotificationLocalDataSource {
   Future<void> markReadNotifications();
   Future<void> markReadNotification(NotificationDbModel notification);
   Future<void> deleteAllNotifications();
-  Future<bool> hasNotReadNotification();
+  Stream<bool> hasNotReadNotification();
 }
 
 class NotificationLocalDataSourceImpl implements NotificationLocalDataSource {
@@ -38,13 +38,14 @@ class NotificationLocalDataSourceImpl implements NotificationLocalDataSource {
   }
 
   @override
-  Future<bool> hasNotReadNotification() async {
+  Stream<bool> hasNotReadNotification() async* {
     final isar = await IsarService.instance;
-    final firstUnread = await isar.notificationDbModels
+
+    yield* isar.notificationDbModels
         .filter()
         .isReadEqualTo(false)
-        .findFirst();
-    return firstUnread != null;
+        .watch(fireImmediately: true)
+        .map((list) => list.isNotEmpty);
   }
 
   @override

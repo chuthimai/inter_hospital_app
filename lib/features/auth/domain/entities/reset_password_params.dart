@@ -1,7 +1,17 @@
 class ResetPasswordParams {
-  final int id;
-  final String oldPassword;
-  final String newPassword;
+  final int _id;
+  final String _oldPassword;
+  final String _newPassword;
 
-  ResetPasswordParams({required this.id, required this.oldPassword, required this.newPassword});
+  ResetPasswordParams({
+    required int id,
+    required String oldPassword,
+    required String newPassword,
+  })  : _id = id,
+        _oldPassword = oldPassword,
+        _newPassword = newPassword;
+
+  int get id => _id;
+  String get oldPassword => _oldPassword;
+  String get newPassword => _newPassword;
 }

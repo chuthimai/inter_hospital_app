@@ -7,7 +7,7 @@ class LoginPushScreen implements PushScreen {
   @override
   void push(BuildContext context) {
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => LoginScreen()),
+      MaterialPageRoute(builder: (_) => const LoginScreen()),
           (Route<dynamic> route) => false, // xoá hết các route trước đó
     );
   }

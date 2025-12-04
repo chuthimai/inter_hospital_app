@@ -1,65 +1,48 @@
 import 'package:isar/isar.dart';
-import '../../../view_medical_record/domain/entities/enum/record_status.dart';
-import '../../domain/entities/patient_record.dart';
+import '../../domain/entities/medical_record.dart';
+import 'hospital_db_model.dart';
 
 part 'patient_record_db_model.g.dart';
 
 @collection
 class PatientRecordDbModel {
   Id id;
-  late String status;
   late DateTime createTime;
   late String? pathUrl;
   late String pathFilePdf;
 
-  // TODO: delete later
-  // final serviceReports = IsarLinks<ServiceReportDbModel>();
-  // final prescription = IsarLink<PrescriptionDbModel>();
+  @Index()
+  final hospital = IsarLink<HospitalDbModel>();
 
   PatientRecordDbModel({
     required this.id,
-    required this.status,
     required this.createTime,
     this.pathUrl,
     required this.pathFilePdf,
   });
 
   /// DB → Domain
-  Future<PatientRecord> toEntity() async {
-    // await Future.wait([
-    //   serviceReports.load(),
-    //   prescription.load(),
-    // ]);
-
-    return PatientRecord(
+  Future<MedicalRecord> toEntity() async {
+    await hospital.load();
+    return MedicalRecord(
       id: id,
-      status: RecordStatusExtention.fromCode(status),
       createdTime: createTime,
+      hospital: hospital.value!.toEntity(),
       pathUrl: pathUrl,
       pathFilePdf: pathFilePdf,
-      // serviceReports: await Future.wait(
-      //   serviceReports.map((r) => r.toEntity()),
-      // ),
-      // prescription: await prescription.value?.toEntity(),
     );
   }
 
   /// Domain → DB
-  factory PatientRecordDbModel.fromEntity(PatientRecord entity) {
+  factory PatientRecordDbModel.fromEntity(MedicalRecord entity) {
+    final hospitalEntity = HospitalDbModel.fromEntity(entity.hospital);
     final model = PatientRecordDbModel(
       id: entity.id,
-      status: entity.status.name,
       createTime: entity.createdTime,
       pathFilePdf: entity.pathFilePdf!,
       pathUrl: entity.pathUrl,
     );
-
-    // model.serviceReports.addAll(entity.serviceReports
-    //     .map((e) => ServiceReportDbModel.fromEntity(e)));
-    // if (entity.prescription != null) {
-    //   model.prescription.value =
-    //       PrescriptionDbModel.fromEntity(entity.prescription!);
-    // }
+    model.hospital.value = hospitalEntity;
 
     return model;
   }

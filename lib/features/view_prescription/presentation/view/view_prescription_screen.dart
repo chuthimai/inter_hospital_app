@@ -6,10 +6,13 @@ class ViewPrescriptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('ViewPrescriptionScreen'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Đơn thuốc'),
+      ),
+      body: const SafeArea(
+        child: Center(
+          child: Text("Không có dữ liệu"),
         ),
       ),
     );

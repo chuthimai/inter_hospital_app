@@ -1,5 +1,6 @@
-import 'package:inter_hospital_app/features/auth/domain/entities/forgot_password_params.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../domain/entities/forgot_password_params.dart';
 
 part 'forgot_password_request.g.dart';
 

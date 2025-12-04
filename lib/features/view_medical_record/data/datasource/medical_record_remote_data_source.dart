@@ -1,6 +1,7 @@
-import 'package:hospital_app/share/constants/path_api.dart';
-import 'package:hospital_app/share/dio/remote_service.dart';
-import 'package:hospital_app/share/utils/app_exception/api_error_handler.dart';
+
+import 'package:inter_hospital_app/share/constants/path_api.dart';
+import 'package:inter_hospital_app/share/dio/remote_service.dart';
+import 'package:inter_hospital_app/share/utils/app_exception/api_error_handler.dart';
 
 import '../models/patient_record_api_model.dart';
 

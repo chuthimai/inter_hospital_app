@@ -20,9 +20,12 @@ class ViewHealthInsuranceScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Bảo Hiểm y tế'),
       ),
-      body: BlocProvider(
-        create: (context) => HealthInsuranceCubit(_repo),
-        child: const HealthInsuranceView(),
+      // body: BlocProvider(
+      //   create: (context) => HealthInsuranceCubit(_repo),
+      //   child: const HealthInsuranceView(),
+      // ),
+      body: const Center(
+        child: Text("Không có dữ liệu"),
       ),
     );
   }

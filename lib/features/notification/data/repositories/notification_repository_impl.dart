@@ -37,14 +37,8 @@ class NotificationRepositoryImpl implements NotificationRepository {
   }
 
   @override
-  Future<bool> hasNotReadNotification() async {
-    try {
-      final hasNotRead = await _localDataSource.hasNotReadNotification();
-      return hasNotRead;
-    } catch (e) {
-      AppLogger().error("Local Error: $e");
-    }
-    return true;
+  Stream<bool> hasNotReadNotification() {
+    return _localDataSource.hasNotReadNotification();
   }
 
   @override

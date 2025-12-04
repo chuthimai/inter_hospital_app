@@ -1,4 +1,5 @@
-import 'package:inter_hospital_app/features/auth/domain/entities/forgot_password_params.dart';
+
+import '../../domain/entities/forgot_password_params.dart';
 
 abstract class ForgotPasswordRemoteDataSource {
   Future<void> forgotPassword(ForgotPasswordParams forgotPasswordParams);

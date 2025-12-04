@@ -6,10 +6,13 @@ class ViewTransferLetterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('ViewTransferLetterScreen'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Giấy chuyển viện'),
+      ),
+      body: const SafeArea(
+        child: Center(
+          child: Text("Không có dữ liệu"),
         ),
       ),
     );
