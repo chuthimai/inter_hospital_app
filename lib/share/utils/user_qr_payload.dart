@@ -7,6 +7,7 @@ class UserQrPayload {
         "${user.name}|"
         "${DateFormatter.formatForOrCode(user.birthDate)}|"
         "${user.gender ? "Nam" : "Nữ"}|"
-        "${user.address}|";
+        "${user.address}||"
+        "${user.telecom ?? ""}";
   }
 }

@@ -18,7 +18,7 @@ class MedicalRecordRemoteDataSourceImpl
   Future<List<PatientRecordApiModel>> getAllPatientRecords() async {
     try {
       final remote = RemoteService();
-      final response = await remote.get(PathApi.getAllMedicalRecord);
+      final response = await remote.get(PathApi.getAllMedicalRecords);
 
       final data = response.data as List<dynamic>;
       final medicalReports = data
@@ -34,18 +34,10 @@ class MedicalRecordRemoteDataSourceImpl
   }
 
   @override
-  Future<PatientRecordApiModel> getDetailPatientRecord(
-      PatientRecordApiModel patientRecord) async {
-    try {
-      final remote = RemoteService();
-      final response = await remote.get(
-          PathApi.getDetailMedicalRecord + patientRecord.identifier.toString());
-
-      final data = response.data as Map<String, dynamic>;
-      return PatientRecordApiModel.fromJson(data);
-    } catch (e) {
-      final error = ApiErrorHandler.handle(e);
-      throw error;
-    }
+  Future<PatientRecordApiModel> getDetailPatientRecord(PatientRecordApiModel patientRecord) {
+    // TODO: implement getDetailPatientRecord
+    throw UnimplementedError();
   }
+
+
 }

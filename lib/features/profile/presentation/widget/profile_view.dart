@@ -5,6 +5,7 @@ import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_cubit.d
 import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_state.dart';
 import 'package:inter_hospital_app/share/constants/app_default.dart';
 import 'package:inter_hospital_app/share/utils/date_formatter.dart';
+import 'package:inter_hospital_app/share/utils/id_formatter.dart';
 import 'package:inter_hospital_app/share/widgets/info_row.dart';
 
 class ProfileView extends StatelessWidget {
@@ -66,6 +67,9 @@ class ProfileView extends StatelessWidget {
           const SizedBox(height: 24),
 
           // Thông tin chung
+          InfoRow(
+              label: "Mã định danh",
+              value: IdFormatter.format(user.id)),
           InfoRow(
               label: "Số điện thoại",
               value: user.telecom ?? "Không có thông tin"),

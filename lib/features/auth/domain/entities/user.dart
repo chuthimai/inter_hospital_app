@@ -1,9 +1,8 @@
 class User {
-  // 1. Chuyển các thuộc tính thành private bằng cách thêm dấu gạch dưới (_)
   final int _id;
   final String _name;
   final String? _email;
-  final String _role;
+  final String? _role;
   final String? _photo;
   final String? _telecom;
   final bool _gender;
@@ -14,7 +13,7 @@ class User {
     required int id,
     required String name,
     required String? email,
-    required String role,
+    String? role,
     String? photo,
     String? telecom,
     required bool gender,
@@ -33,7 +32,7 @@ class User {
   int get id => _id;
   String get name => _name;
   String? get email => _email;
-  String get role => _role;
+  String? get role => _role;
   String? get photo => _photo;
   String? get telecom => _telecom;
   bool get gender => _gender;

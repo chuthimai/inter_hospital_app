@@ -8,21 +8,19 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('ProfileScreen'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.qr_code_2_outlined),
-              onPressed: () => PushScreenFactory()
-                  .create(PushScreenType.profileQrCode)
-                  .push(context),
-            ),
-          ],
-        ),
-        body: const ProfileView(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Thông tin cá nhân'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.qr_code_2_outlined),
+            onPressed: () => PushScreenFactory()
+                .create(PushScreenType.profileQrCode)
+                .push(context),
+          ),
+        ],
       ),
+      body: const SafeArea(child: ProfileView()),
     );
   }
 }

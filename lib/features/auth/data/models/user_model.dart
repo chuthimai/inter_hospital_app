@@ -7,10 +7,10 @@ part 'user_model.g.dart';
 
 @JsonSerializable()
 class UserModel {
-  final int id;
+  final String identifier;
   final String name;
   final String? email;
-  final String role;
+  final String? role;
   final String? photo;
   final String? telecom;
   final bool gender;
@@ -18,10 +18,10 @@ class UserModel {
   final String? address;
 
   const UserModel({
-    required this.id,
+    required this.identifier,
     required this.name,
     this.email,
-    required this.role,
+    this.role,
     this.photo,
     this.telecom,
     required this.gender,
@@ -37,7 +37,7 @@ class UserModel {
   User toEntity() {
     DateFormat format = DateFormat("yyyy-MM-dd");
     return User(
-      id: id,
+      id: int.parse(identifier),
       name: name,
       email: email,
       role: role,

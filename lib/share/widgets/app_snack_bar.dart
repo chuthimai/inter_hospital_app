@@ -42,7 +42,7 @@ class AppSnackBar {
         backgroundColor: Colors.white.withOpacity(0.9),
         duration: const Duration(seconds: 3),
         dismissDirection: DismissDirection.horizontal,
-        margin: EdgeInsets.fromLTRB(12.sp, 0, 12.sp, MediaQuery.of(context).size.height/6 * 5),
+        margin: EdgeInsets.fromLTRB(12.sp, 0, 12.sp, MediaQuery.of(context).size.height/5 * 4),
         content: Row(
           children: [
             Icon(icon, color: iconColor),
