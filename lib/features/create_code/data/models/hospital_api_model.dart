@@ -5,11 +5,11 @@ part 'hospital_api_model.g.dart';
 
 @JsonSerializable()
 class HospitalApiModel {
-  final int id;
+  final int identifier;
   final String name;
 
   HospitalApiModel({
-    required this.id,
+    required this.identifier,
     required this.name,
   });
 
@@ -18,5 +18,5 @@ class HospitalApiModel {
 
   Map<String, dynamic> toJson() => _$HospitalApiModelToJson(this);
 
-  Hospital toEntity() => Hospital(id: id, name: name);
+  Hospital toEntity() => Hospital(id: identifier, name: name);
 }

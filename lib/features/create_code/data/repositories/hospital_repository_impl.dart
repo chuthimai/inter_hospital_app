@@ -28,18 +28,21 @@ class HospitalRepositoryImpl implements HospitalRepository {
   @override
   Future<List<Hospital>> getAllHospital() async {
     try {
-      final lastId = await _localDataSource.getLastId();
-      final newestHospital =
-          await _remoteDataSource.getAllHospitalNewest(lastId ?? 0);
-      await _localDataSource.saveHospitals(newestHospital
+      final hospitals = await _remoteDataSource.getAllHospital();
+      await _localDataSource.saveHospitals(hospitals
           .map((e) => HospitalDbModel.fromEntity(e.toEntity()))
           .toList());
-
+      return hospitals.map((e) => e.toEntity()).toList();
     } catch (e) {
       AppLogger().error("Local/Remote data: $e");
     }
 
-    final allHospitals = await _localDataSource.getAllHospital();
-    return allHospitals.map((e) => e.toEntity()).toList();
+    try {
+      final allHospitals = await _localDataSource.getAllHospital();
+      return allHospitals.map((e) => e.toEntity()).toList();
+    } catch (e) {
+      AppLogger().error("Local data: $e");
+    }
+    return [];
   }
 }

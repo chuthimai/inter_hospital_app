@@ -3,7 +3,7 @@ class PathApi {
 
   /// Bệnh án
   static const getAllMedicalRecords = "records/by-patient";
-  static const permitAccessAllMedicalRecords = "/permissions";
+  static const createPermission = "/permissions";
 
   /// Bệnh viện
   static const getAllHospital = "/hospitals";

@@ -8,12 +8,12 @@ part of 'hospital_api_model.dart';
 
 HospitalApiModel _$HospitalApiModelFromJson(Map<String, dynamic> json) =>
     HospitalApiModel(
-      id: (json['id'] as num).toInt(),
+      identifier: (json['identifier'] as num).toInt(),
       name: json['name'] as String,
     );
 
 Map<String, dynamic> _$HospitalApiModelToJson(HospitalApiModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'identifier': instance.identifier,
       'name': instance.name,
     };

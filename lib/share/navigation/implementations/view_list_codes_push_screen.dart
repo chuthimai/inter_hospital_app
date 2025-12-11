@@ -8,7 +8,7 @@ class ViewListCodesPushScreen implements PushScreen {
   void push(BuildContext context) {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => const ViewListCodesScreen()),
+      MaterialPageRoute(builder: (context) => ViewListCodesScreen()),
           (route) => route.isFirst, // giữ lại duy nhất trang Home
     );
   }

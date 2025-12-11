@@ -9,8 +9,6 @@ class HospitalCubit extends Cubit<HospitalState> {
   HospitalCubit(this.repo) : super(HospitalInitial());
 
   Future<void> getAllHospitals() async {
-    // TODO: delete after test
-    // await repo.deleteLocalAllHospital();
     emit(HospitalLoading());
     final hospitals = await repo.getAllHospital();
     emit(HospitalSuccess(hospitals));

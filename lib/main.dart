@@ -12,11 +12,9 @@ import 'package:inter_hospital_app/features/auth/domain/repositories/auth_reposi
 import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:inter_hospital_app/features/auth/presentation/cubit/auth_state.dart';
 import 'package:inter_hospital_app/features/auth/presentation/view/login_screen.dart';
-import 'package:inter_hospital_app/features/create_code/data/datasources/smart_contract_local_data_source.dart';
-import 'package:inter_hospital_app/features/create_code/data/datasources/smart_contract_remote_data_source.dart';
-import 'package:inter_hospital_app/features/create_code/data/repositories/smart_contract_repository_impl.dart';
-import 'package:inter_hospital_app/features/create_code/domain/repositories/smart_contract_repository.dart';
-import 'package:inter_hospital_app/features/create_code/presentation/cubit/qr_code_cubit.dart';
+import 'package:inter_hospital_app/features/create_code/data/datasources/permission_local_data_source.dart';
+import 'package:inter_hospital_app/features/create_code/data/datasources/permission_remote_data_source.dart';
+import 'package:inter_hospital_app/features/create_code/data/repositories/permission_repository_impl.dart';
 import 'package:inter_hospital_app/features/notification/data/datasource/notification_local_data_source.dart';
 import 'package:inter_hospital_app/features/notification/data/repositories/notification_repository_impl.dart';
 import 'package:inter_hospital_app/features/notification/domain/repositories/notification_repository.dart';
@@ -81,10 +79,10 @@ class InitializerApp extends StatelessWidget {
     NotificationSettingRepositoryImpl(
         NotificationSettingLocalDataSourceImpl());
 
-    // QR Code
-    final smartContractRepository = SmartContractRepositoryImpl(
-      localDataSource: SmartContractLocalDataSourceImpl(),
-      remoteDataSource: SmartContractRemoteDataSourceImpl(),
+    // Permission
+    final permissionRepository = PermissionRepositoryImpl(
+      localDataSource: PermissionLocalDataSourceImpl(),
+      remoteDataSource: PermissionRemoteDataSourceImpl(),
     );
 
     // Tạo RemoteService
@@ -111,7 +109,6 @@ class InitializerApp extends StatelessWidget {
       themeRepository: themeRepository,
       notificationRepository: notificationRepository,
       notificationSettingRepository: notificationSettingRepository,
-      smartContractRepository: smartContractRepository,
     );
   }
 
@@ -167,7 +164,6 @@ class InitializerApp extends StatelessWidget {
                 create: (context) => NotificationSettingCubit(
                     dependency.notificationSettingRepository),
               ),
-              BlocProvider(create: (context) => QrCodeCubit(dependency.smartContractRepository)),
             ],
             child: ScreenUtilInit(
               designSize: const Size(430, 932), // màn hình iphone 14 pro
@@ -192,14 +188,12 @@ class _AppDependencies {
   final ThemeRepository themeRepository;
   final NotificationRepository notificationRepository;
   final NotificationSettingRepository notificationSettingRepository;
-  final SmartContractRepository smartContractRepository;
 
   _AppDependencies({
     required this.authCubit,
     required this.themeRepository,
     required this.notificationRepository,
     required this.notificationSettingRepository,
-    required this.smartContractRepository,
   });
 }
 
