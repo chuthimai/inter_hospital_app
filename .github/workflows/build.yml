@@ -23,11 +23,17 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # 4. Phân tích code (hiển thị warning nhưng ko dừng)
+      # 4. Tạo lại file firebase_options.dart từ GitHub Secrets
+      - name: Create firebase_options.dart
+        run: echo "$FIREBASE_OPTIONS" > lib/firebase_options.dart
+        env:
+         FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
+
+      # 5. Phân tích code (hiển thị warning nhưng ko dừng)
       - name: Analyze project source
         run: flutter analyze || true
 
-      # 5. Chạy test (optional)
+      # 6. Chạy test (optional)
       - name: Run tests
         run: flutter test
 
@@ -44,11 +50,11 @@ jobs:
             echo "xxxxx No tests found."
           fi
 
-      # 6. Build file APK (release)
+      # 7. Build file APK (release)
       - name: Build Android APK
         run: flutter build apk --release --dart-define=BASE_URL=${{ secrets.PROD_BASE_URL }}
 
-      # 7. Lưu file APK ra artifacts để tải về
+      # 8. Lưu file APK ra artifacts để tải về
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
