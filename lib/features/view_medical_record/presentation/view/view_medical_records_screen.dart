@@ -7,7 +7,7 @@ import '../../data/repositories/medical_record_repository_impl.dart';
 import '../../domain/repositories/medical_record_repository.dart';
 import '../cubit/medical_record_cubit.dart';
 import '../cubit/medical_record_state.dart';
-import '../widgets/medical_records_list_view.dart';
+import '../widgets/medical_records_view.dart';
 
 class ViewMedicalRecordsScreen extends StatelessWidget {
   ViewMedicalRecordsScreen({super.key});
@@ -34,7 +34,7 @@ class ViewMedicalRecordsScreen extends StatelessWidget {
                   onRefresh: () async {
                     context.read<MedicalRecordCubit>().getAllPatientRecords();
                   },
-                  child: const MedicalRecordListView()
+                  child: const MedicalRecordsView()
               );
             }
           )

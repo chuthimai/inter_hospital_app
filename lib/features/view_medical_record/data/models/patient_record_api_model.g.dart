@@ -13,8 +13,7 @@ PatientRecordApiModel _$PatientRecordApiModelFromJson(
       createdTime: DateTime.parse(json['createdTime'] as String),
       hospital:
           HospitalApiModel.fromJson(json['hospital'] as Map<String, dynamic>),
-      pathUrl: json['pathUrl'] as String?,
-      pathFilePdf: json['pathFilePdf'] as String?,
+      link: json['link'] as String?,
     );
 
 Map<String, dynamic> _$PatientRecordApiModelToJson(
@@ -23,6 +22,5 @@ Map<String, dynamic> _$PatientRecordApiModelToJson(
       'identifier': instance.identifier,
       'createdTime': instance.createdTime.toIso8601String(),
       'hospital': instance.hospital,
-      'pathUrl': instance.pathUrl,
-      'pathFilePdf': instance.pathFilePdf,
+      'link': instance.link,
     };

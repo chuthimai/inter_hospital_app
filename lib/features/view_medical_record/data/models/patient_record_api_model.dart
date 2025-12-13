@@ -9,15 +9,13 @@ class PatientRecordApiModel {
   final int identifier;
   final DateTime createdTime;
   final HospitalApiModel hospital;
-  final String? pathUrl;
-  final String? pathFilePdf;
+  final String? link;
 
   PatientRecordApiModel({
     required this.identifier,
     required this.createdTime,
     required this.hospital,
-    this.pathUrl,
-    this.pathFilePdf,
+    this.link,
   });
 
   factory PatientRecordApiModel.fromJson(Map<String, dynamic> json) =>
@@ -30,7 +28,6 @@ class PatientRecordApiModel {
     id: identifier,
     createdTime: createdTime,
     hospital: hospital.toEntity(),
-    pathUrl: pathUrl,
-    pathFilePdf: pathFilePdf,
+    pathUrl: link,
   );
 }
