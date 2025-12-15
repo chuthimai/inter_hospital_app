@@ -1,4 +1,5 @@
-import 'hospital.dart';
+
+import 'package:inter_hospital_app/features/create_code/domain/entities/hospital.dart';
 
 class MedicalRecord {
   final int id;

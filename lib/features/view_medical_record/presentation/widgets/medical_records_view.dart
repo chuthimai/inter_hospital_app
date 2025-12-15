@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:inter_hospital_app/features/create_code/domain/entities/hospital.dart';
 
-import '../../domain/entities/hospital.dart';
 import '../../domain/entities/medical_record.dart';
 import '../cubit/medical_record_cubit.dart';
 import '../cubit/medical_record_state.dart';
@@ -16,9 +16,9 @@ class MedicalRecordsView extends StatefulWidget {
 }
 
 class _MedicalRecordsViewState extends State<MedicalRecordsView> {
-  Hospital? _selectedHospital;
+  int _selectedHospitalId = 0;
   List<MedicalRecord> _medicalRecords = [];
-  final List<Hospital> _hospitals = [Hospital(id: 0, name: "Tất cả")];
+  List<Hospital> _hospitals = [];
 
   @override
   void initState() {
@@ -43,6 +43,7 @@ class _MedicalRecordsViewState extends State<MedicalRecordsView> {
 
       final medicalRecords =
           (state as MedicalRecordGetAllSuccess).patientRecords;
+      _medicalRecords = medicalRecords;
       if (medicalRecords.isEmpty) {
         return const Center(
           child: Text("Không có bệnh án"),
@@ -59,33 +60,42 @@ class _MedicalRecordsViewState extends State<MedicalRecordsView> {
           )
           .values
           .toList();
-      _hospitals.addAll(hospitals);
-
+      _hospitals = hospitals;
+      _hospitals.add(Hospital(id: 0, name: "Tất cả"));
       return Column(
         children: [
           SizedBox(height: 8.sp),
-          DropdownButtonFormField<Hospital>(
-            value: _selectedHospital,
-            items: _hospitals
-                .map((e) => DropdownMenuItem(
-                    key: Key(e.id.toString()), value: e, child: Text(e.name)))
-                .toList(),
-            decoration: const InputDecoration(
-              labelText: "Chọn bệnh viện",
-              border: OutlineInputBorder(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12.sp),
+            child: DropdownButtonFormField<int>(
+              value: _selectedHospitalId,
+              items: _hospitals.map((h) {
+                return DropdownMenuItem<int>(
+                  value: h.id,
+                  child: Text(h.name),
+                );
+              }).toList(),
+              decoration: const InputDecoration(
+                labelText: "Chọn bệnh viện",
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (val) {
+                setState(() {
+                  if (val == null) {
+                    _selectedHospitalId = 0;
+                  } else {
+                    _selectedHospitalId = val;
+                  }
+                  if (0 == _selectedHospitalId) {
+                    _medicalRecords = medicalRecords;
+                    return;
+                  }
+                  _medicalRecords = medicalRecords
+                      .where((e) => e.hospital.id == _selectedHospitalId)
+                      .toList();
+                });
+              },
             ),
-            onChanged: (val) {
-              setState(() {
-                _selectedHospital = val;
-                if (0 == val?.id) {
-                  _medicalRecords = medicalRecords;
-                  return;
-                }
-                _medicalRecords = medicalRecords
-                    .where((e) => e.hospital.id == val?.id)
-                    .toList();
-              });
-            },
           ),
           SizedBox(height: 8.sp),
           Expanded(

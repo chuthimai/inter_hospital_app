@@ -1,6 +1,6 @@
+import 'package:inter_hospital_app/features/create_code/data/models/hospital_db_model.dart';
 import 'package:isar/isar.dart';
 import '../../domain/entities/medical_record.dart';
-import 'hospital_db_model.dart';
 
 part 'patient_record_db_model.g.dart';
 

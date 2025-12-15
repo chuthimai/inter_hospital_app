@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../data/datasource/medical_record_local_data_source.dart';
 import '../../data/datasource/medical_record_remote_data_source.dart';
@@ -34,7 +35,10 @@ class ViewMedicalRecordsScreen extends StatelessWidget {
                   onRefresh: () async {
                     context.read<MedicalRecordCubit>().getAllPatientRecords();
                   },
-                  child: const MedicalRecordsView()
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 4.sp, horizontal: 8.sp),
+                    child: const MedicalRecordsView(),
+                  )
               );
             }
           )

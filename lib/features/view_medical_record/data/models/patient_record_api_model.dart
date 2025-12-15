@@ -1,6 +1,6 @@
+import 'package:inter_hospital_app/features/create_code/data/models/hospital_api_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/medical_record.dart';
-import 'hospital_api_model.dart';
 
 part 'patient_record_api_model.g.dart';
 

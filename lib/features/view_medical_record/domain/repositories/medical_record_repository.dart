@@ -4,6 +4,6 @@ abstract class MedicalRecordRepository {
   Future<List<MedicalRecord>> getAllPatientRecords();  // api + local
   Future<MedicalRecord?> getDetailPatientRecord(MedicalRecord patientRecord);  // api + local
   // Chỉ lưu patientRecord đã đóng
-  Future<void> savePatientRecord(MedicalRecord patientRecord);  // local
+  Future<MedicalRecord?> savePatientRecord(MedicalRecord patientRecord);  // local
   Future<void> deleteAllPatientRecords();  // local
 }

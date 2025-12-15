@@ -47,8 +47,8 @@ class MedicalRecordRepositoryImpl implements MedicalRecordRepository {
   }
 
   @override
-  Future<void> savePatientRecord(MedicalRecord patientRecord) async {
-    if (patientRecord.pathUrl == null) return;
+  Future<MedicalRecord?> savePatientRecord(MedicalRecord patientRecord) async {
+    if (patientRecord.pathUrl == null) return null;
     try {
       final pathFilePdf = await PdfFileManager.downloadPdf(
         patientRecord.pathUrl!,
@@ -58,17 +58,31 @@ class MedicalRecordRepositoryImpl implements MedicalRecordRepository {
       patientRecord.pathFilePdf = pathFilePdf;
       await _localDataSource
           .savePatientRecord(PatientRecordDbModel.fromEntity(patientRecord));
+      return patientRecord;
     } catch (e) {
       AppLogger().error("Local error: $e");
       if (e.toString().contains("Error downloading PDF")) {
         throw Exception("Tải file thất bại");
       }
     }
+    return null;
   }
 
   @override
-  Future<MedicalRecord?> getDetailPatientRecord(MedicalRecord patientRecord) {
-    // TODO: implement getDetailPatientRecord
-    throw UnimplementedError();
+  Future<MedicalRecord?> getDetailPatientRecord(MedicalRecord patientRecord) async {
+    try {
+      final patientRecordLocal = await _localDataSource.getDetailPatientRecord(
+          PatientRecordDbModel.fromEntity(patientRecord));
+      if (patientRecordLocal != null) return patientRecordLocal.toEntity();
+    } catch (e) {
+      AppLogger().error("Local error: $e");
+    }
+
+    try {
+      return await savePatientRecord(patientRecord);
+    } catch (e) {
+      AppLogger().error("Remote/Local error: $e");
+      rethrow;
+    }
   }
 }
