@@ -21,9 +21,16 @@ Dưới đây là một số nguồn tài liệu tham khảo:
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
 ---
+## Sơ đồ lớp
+<img src="readme_assets/5.png" width="400"/>
+
 ## Cấu trúc thư mục
 
 Sử dụng tổ chức code theo kiến trúc Clean Architecture kết hợp với MVVM, chia theo từng chức năng của app.
+
+| Cấu trúc tổng quan                                | Cấu trúc layer trong mỗi tính năng                         |
+|---------------------------------------------------|------------------------------------------------------------|
+| <img src="readme_assets/mobile.jpg" width="400"/> | <img src="readme_assets/featureA mobile.jpg" width="300"/> |
 
 ```text
 ├── .gitignore                      # Quy định file/thư mục bỏ qua khi commit Git
@@ -74,4 +81,48 @@ Sử dụng tổ chức code theo kiến trúc Clean Architecture kết hợp v�
 ├── macos/         # Code native cho macOS desktop
 ├── web/           # Code hỗ trợ chạy trên Web
 └── windows/       # Code native cho Windows desktop
+```
+## Nhánh build
+Các bước thực hiện triển khai:
+- Bước 1: Lấy toàn bộ mã nguồn của repo GitHub vào môi trường runner
+- Bước 2: Cài Flutter SDK
+- Bước 3: Cài đặt các thư viện phụ thuộc (dependency) cho dự án
+- Bước 4: Tạo lại file firebase_options.dart từ GitHub Secrets
+- Bước 5: Phân tích code (hiển thị warning nhưng ko dừng)
+- Bước 6: Chạy testcase (nếu có)
+- Bước 7: Build file APK
+- Bước 8: Lưu file APK ra artifacts để tải về và gửi link tải app đến email tài khoản test đã đăng ký.
+
+## Sơ đồ triển khai
+<img src="readme_assets/Deployment%20Diagram%20-%20HIS.jpg" /> 
+
+## Kết quả sau khi chạy
+| Trang chủ                                    | Tạo mã cấp quyền                             | Danh sách mã                                 | Mã chi tiết                                  |
+|----------------------------------------------|----------------------------------------------|----------------------------------------------|----------------------------------------------|
+| <img src="readme_assets/1.png" width="200"/> | <img src="readme_assets/2.png" width="200"/> | <img src="readme_assets/3.png" width="200"/> | <img src="readme_assets/4.png" width="200"/> |
+
+---
+## Cách chạy project
+
+- Clone source code
+```shell
+git clone https://github.com/chuthimai/hospital_app.git
+```
+- Cài đặt dependencies
+```shell
+flutter pub get
+```
+- Cấu hình Firebase
+```shell
+# cai dat
+curl -sL https://firebase.tools | bash 
+
+# dang nhap
+firebase login 
+
+# ds cac project dc luu
+firebase projects:list 
+
+# Cài đặt FlutterFire CLI bằng cách chạy lệnh sau từ bất kỳ thư mục nào
+dart pub global activate flutterfire_cli 
 ```
