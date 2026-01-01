@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "c874383426ecc702eaf02cd5ae9f992f3449bd4c5992613177b0741d6da636be"
+build_start_time: [1766678177, 325708866]
+build_end_time: [1766678177, 385200977]
+inputs:
+  "/Users/maichu/Flutter/inter_hospital_app/ios/Runner/AppDelegate.swift": !dirty [1757056690, 414793252]
